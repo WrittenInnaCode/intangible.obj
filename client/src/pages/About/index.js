@@ -1,3 +1,5 @@
+import React from 'react';
+
 // these queries are here for example ONLY
 import { QUERY_USERS } from '../../utils/queries';
 import { useQuery } from '@apollo/client';

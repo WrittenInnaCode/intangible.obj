@@ -1,15 +1,62 @@
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import { Menu, Grid, Segment } from 'semantic-ui-react'
 
-function Navbar() {
-	return (
-		<nav>
-			<a href="/">Home</a>
-			<Link to="/">Home</Link>
-			
-			<Link to="/about">About</Link>
-			<Link to="/contact">Contact</Link>
-		</nav>
-	);	
+export default class MenuExampleVerticalSecondary extends Component {
+	state = { activeItem: 'home' }
+
+	handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+	render() {
+		const { activeItem } = this.state
+
+		return (
+
+			<Menu pointing secondary vertical>
+
+				<Link to="/">
+					<Menu.Item
+						name='home'
+						active={activeItem === 'home'}
+						onClick={this.handleItemClick}
+					/>
+				</Link>
+
+				<Link to="/blog">
+					<Menu.Item
+						name='blog'
+						active={activeItem === 'blog'}
+						onClick={this.handleItemClick}
+					/>
+				</Link>
+
+				<Link to="/events">
+					<Menu.Item
+						name='events'
+						active={activeItem === 'events'}
+						onClick={this.handleItemClick}
+					/>
+				</Link>
+
+				<Link to="/about">
+					<Menu.Item
+						name='about'
+						active={activeItem === 'about'}
+						onClick={this.handleItemClick}
+					/>
+				</Link>
+
+				<Link to="/contact">
+					<Menu.Item
+						name='contact'
+						active={activeItem === 'contact'}
+						onClick={this.handleItemClick}
+					/>
+				</Link>
+
+			</Menu>
+
+
+		)
+	}
 }
-
-export default Navbar;

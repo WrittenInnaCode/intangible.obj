@@ -17,7 +17,13 @@ const userSchema = new Schema(
 		password: {
 			type: String,
 			required: true,
-		}
+		},
+		blogs: [
+			{
+			  type: Schema.Types.ObjectId,
+			  ref: 'Blog',
+			},
+		  ],
 	},
 	// set this to use virtual below
 	{
