@@ -2,12 +2,15 @@ import React from 'react';
 
 // Import the `useParams()` hook
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 
 import CommentList from '../../components/CommentList';
 import CommentForm from '../../components/CommentForm';
 
 import { QUERY_SINGLE_BLOG } from '../../utils/queries';
+// import { REMOVE_BLOG } from '../../utils/mutations';
+
+import { Button } from 'semantic-ui-react'
 
 const SingleBlog = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
@@ -18,23 +21,36 @@ const SingleBlog = () => {
     variables: { blogId: blogId },
   });
 
+  // const [removeBlog] = useMutation(REMOVE_BLOG);
+
+  // const handleOnClick = async (blogId) => {
+  //     const { data } = await removeBlog({
+  //       variables: { blogId },
+  //     });
+  //   }
+
+  // const handleOnClick = () => {
+  //   removeBlog({ variables: { blogId }});
+  // }
+
   const blog = data?.blog || {};
 
   if (loading) {
     return <div>Loading...</div>;
   }
   return (
-    <div className="my-3">
-      <h3 className="card-header bg-dark text-light p-2 m-0">
+    <div >
+
+      <h3>
         {blog.blogAuthor} <br />
         <span style={{ fontSize: '1rem' }}>
           posted this blog on {blog.createdAt}
         </span>
       </h3>
-      <div className="bg-light py-4">
+
+      <div >
         <blockquote
-          className="p-4"
-          style={{
+           style={{
             fontSize: '1.5rem',
             fontStyle: 'italic',
             border: '2px dotted #1a1a1a',
@@ -43,14 +59,21 @@ const SingleBlog = () => {
         >
           {blog.blogText}
         </blockquote>
+
+        <Button 
+        // onClick={handleOnClick} 
+        type="click" inverted color='red' content='Delete' />
+
       </div>
 
-      <div className="my-5">
+      <div>
         <CommentList comments={blog.comments} />
       </div>
-      <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
+
+      <div style={{ border: '1px dotted #1a1a1a' }}>
         <CommentForm blogId={blog._id} />
       </div>
+      
     </div>
   );
 };

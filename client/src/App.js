@@ -24,8 +24,8 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-// import SingleBlog from './pages/SingleBlog';
-// import Profile from './pages/Profile';
+import SingleBlog from './pages/SingleBlog';
+import Profile from './pages/Profile';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -56,7 +56,7 @@ function App() {
         <>
           <Header />
 
-          <Grid>
+          <Grid stackable>
 
             <Grid.Column width={4}>
               <Navbar />
@@ -87,18 +87,18 @@ function App() {
                     path="/signup"
                     element={<Signup />}
                   />
-                  {/* <Route
+                  <Route
                     path="/me"
                     element={<Profile />}
                   />
                   <Route
                     path="/profiles/:username"
                     element={<Profile />}
-                  /> */}
-                  {/* <Route
+                  />
+                  <Route
                     path="/blogs/:blogId"
                     element={<SingleBlog />}
-                  /> */}
+                  />
                   <Route
                     path="/about"
                     element={<About />}

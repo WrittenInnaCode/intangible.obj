@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { Menu, Grid, Segment } from 'semantic-ui-react'
 
-export default class MenuExampleVerticalSecondary extends Component {
+export default class MenuVerticalSecondary extends Component {
 	state = { activeItem: 'home' }
 
 	handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -12,7 +12,7 @@ export default class MenuExampleVerticalSecondary extends Component {
 
 		return (
 
-			<Menu pointing secondary vertical>
+			<Menu pointing secondary vertical >
 
 				<Link to="/">
 					<Menu.Item

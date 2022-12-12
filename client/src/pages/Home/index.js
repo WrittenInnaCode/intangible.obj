@@ -3,36 +3,67 @@ import Object from '../../components/Object';
 import { Container, Row, Column, Grid, Image } from 'semantic-ui-react'
 
 function Home() {
-	const [objects] = useState([
+    const [objects] = useState([
         {
-            name: "Courier App",
-            description: "Javascript, Express, Sequelize, Handlebars",
-            deployedLink: "https://courier-share.herokuapp.com/info",
-            githubLink: "https://github.com/joejhansen/courier-app",
-            image: "octocatInna.png"
-        }
+            name: "Name of object",
+            description: "Description",
+            deployedLink: " ",
+            image: "image.png"
+        },
+        {
+            name: "Name of object",
+            description: "Description",
+            deployedLink: " ",
+            image: "image.png"
+        },
+        {
+            name: "Name of object",
+            description: "Description",
+            deployedLink: " ",
+            image: "image.png"
+        },
+        {
+            name: "Name of object",
+            description: "Description",
+            deployedLink: " ",
+            image: "image.png"
+        },
+        {
+            name: "Name of object",
+            description: "Description",
+            deployedLink: " ",
+            image: "image.png"
+        },
+        {
+            name: "Name of object",
+            description: "Description",
+            deployedLink: " ",
+            image: "image.png"
+        },
     ])
 
 
-	return (
-		<div>
-			<h1>
-				This is the homepage.
-			</h1>
+    return (
+        <div>
+            <h1>
+                This is the homepage.
+            </h1>
 
-			<Container>
-                <div>
-                    {objects.map((object, i) => (
-                        <div>
-                            <Object object={object} key={"object" + i} />
-                        </div>
-                    ))}
-                </div>
+            <Container fluid>
+                <Grid>
+                    <Grid columns={3} stackable>
+                            {objects.map((object, i) => (
+                                <Grid.Column>
+                                    <Object object={object} key={"object" + i} />
+                                </Grid.Column>
+                            ))}
+                    </Grid>
+                </Grid>
             </Container>
-		
 
-		</div>
-	);
+
+        </div>
+    );
 }
 
 export default Home;
