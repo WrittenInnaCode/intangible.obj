@@ -6,7 +6,7 @@ import BlogList from '../../components/BlogList';
 
 import { QUERY_BLOGS } from '../../utils/queries';
 
-
+import { Container, Grid } from 'semantic-ui-react'
 
 function Blog() {
 
@@ -15,11 +15,6 @@ function Blog() {
 
 	return (
 		<main>
-
-			<h1>
-				This is the blog page.
-			</h1>
-
 			{/* <div
 				style={{ border: '1px dotted #1a1a1a' }}>
 				<BlogForm />

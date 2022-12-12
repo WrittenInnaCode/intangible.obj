@@ -50,63 +50,63 @@ const Login = (props) => {
         <Segment placeholder>
           <Grid columns={2} relaxed='very' stackable>
             <Grid.Column>
+              <div className='login'>
+                <h4 >Login</h4>
+                {data ? (
+                  <p>
+                    Success! You may now head{' '}
+                    <Link to="/">back to the homepage.</Link>
+                  </p>
+                ) : (
 
-              <h4 >Login</h4>
-              {data ? (
-                <p>
-                  Success! You may now head{' '}
-                  <Link to="/">back to the homepage.</Link>
-                </p>
-              ) : (
+                  <Form onSubmit={handleFormSubmit} >
 
-                <Form onSubmit={handleFormSubmit} >
+                    <Input iconPosition='left'
+                      placeholder="Email"
+                      name="email"
+                      type="email"
+                      value={formState.email}
+                      onChange={handleChange}
+                    >
+                      <Icon name='at' />
+                      <input />
+                    </Input>
 
-                  <Input iconPosition='left'
-                    placeholder="Email"
-                    name="email"
-                    type="email"
-                    value={formState.email}
-                    onChange={handleChange}
-                  >
-                    <Icon name='at' />
-                    <input />
-                  </Input>
+                    <br />
+                    <br />
 
-                  <br />
-                  <br />
+                    <Input iconPosition='left'
+                      placeholder="Password"
+                      name="password"
+                      type="password"
+                      value={formState.password}
+                      onChange={handleChange}
+                    >
+                      <Icon name='lock' />
+                      <input />
+                    </Input>
+                    <br />
+                    <br />
 
-                  <Input iconPosition='left'
-                    placeholder="Password"
-                    name="password"
-                    type="password"
-                    value={formState.password}
-                    onChange={handleChange}
-                  >
-                    <Icon name='lock' />
-                    <input />
-                  </Input>
-                  <br />
-                  <br />
-
-                  <Button type="submit" inverted color='violet' content='Submit' />
+                    <Button type="submit" inverted color='violet' content='Submit' />
 
 
-                </Form>
-              )}
+                  </Form>
+                )}
 
-              {error && (
-                <div className="my-3 p-3 bg-danger text-white">
-                  {error.message}
-                </div>
-              )}
-
+                {error && (
+                  <div className="my-3 p-3 bg-danger text-white">
+                    {error.message}
+                  </div>
+                )}
+              </div>
 
             </Grid.Column>
 
             <Grid.Column verticalAlign='middle'>
               <Link to="/signup"><Button content='Sign up' icon='signup' size='big' /></Link>
             </Grid.Column>
-            
+
           </Grid>
 
           <Divider vertical>Or</Divider>

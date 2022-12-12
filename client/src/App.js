@@ -63,7 +63,7 @@ function App() {
             </Grid.Column>
 
 
-            <Grid.Column stretched width={10}>
+            <Grid.Column stretched width={10} className="noPadding">
               
               <Container >
                 <Routes>
