@@ -1,6 +1,6 @@
 import React from 'react';
-import { Navigate, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useParams } from 'react-router-dom';
+import { useQuery, useMutation } from '@apollo/client';
 
 import { Link } from 'react-router-dom';
 
@@ -8,12 +8,14 @@ import BlogForm from '../../components/BlogForm';
 // import BlogList from '../../components/BlogList';
 
 import { QUERY_USER, QUERY_ME } from '../../utils/queries';
+import { REMOVE_BLOG } from '../../utils/mutations';
 
 import { Card, Button } from 'semantic-ui-react'
 
 import Auth from '../../utils/auth';
 
 const Profile = () => {
+
   const { username: userParam } = useParams();
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
@@ -21,6 +23,16 @@ const Profile = () => {
   });
 
   const user = data?.me || data?.user || {};
+
+
+  const [removeBlog, { error }] = useMutation(REMOVE_BLOG);
+
+  const handleOnClick = async (blogId) => {
+    const { data } = await removeBlog({
+      variables: { blogId },
+    });
+    window.location.reload()
+  }
 
 
   // navigate to personal profile page if you are the admin
@@ -57,8 +69,10 @@ const Profile = () => {
             <Link to={`/blogs/${blog._id}`}>
               Comment on this blog post.
             </Link>
-            <Button type="click">Delete</Button>
-
+            <Button.Group>
+              <Button type="click" onClick={() => handleOnClick (blog._id)}>Delete</Button>
+              <Button>Edit</Button>
+            </Button.Group>
 
           </Card>
         ))}
