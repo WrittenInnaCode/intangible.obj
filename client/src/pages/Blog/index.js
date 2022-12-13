@@ -6,7 +6,6 @@ import BlogList from '../../components/BlogList';
 
 import { QUERY_BLOGS } from '../../utils/queries';
 
-import { Container, Grid } from 'semantic-ui-react'
 
 function Blog() {
 

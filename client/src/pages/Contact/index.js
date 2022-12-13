@@ -50,13 +50,13 @@ function Contact() {
 
 			<form ref={form} onSubmit={sendEmail} className="contact-form">
 				<div className="user-info">
-					<input type="text" value={user_name} name="user_name" className="name-input" id="contact-name" placeholder='Name' onChange={handleChange}></input>
-					<input type="email" value={user_email} name="user_email" className="email-input" id="contact-email" placeholder='Email' onChange={handleChange}></input>
+					<input type="text" required value={user_name} name="user_name" className="name-input" id="contact-name" placeholder='Name' onChange={handleChange}></input>
+					<input type="email" required value={user_email} name="user_email" className="email-input" id="contact-email" placeholder='Email' onChange={handleChange}></input>
 				</div>
 
 				<div className="message-content">
 					{/* <input name="subject" value={subject} className="subject-input" id="contact-subject" placeholder='subject' onChange={handleChange}></input> */}
-					<textarea name="message" value={message} className="message-input" id="contact-message" placeholder='Message' onChange={handleChange} rows="4"></textarea>
+					<textarea required name="message" value={message} className="message-input" id="contact-message" placeholder='Message' onChange={handleChange} rows="4"></textarea>
 				</div>
 				<br />
 				<div className="send-button">

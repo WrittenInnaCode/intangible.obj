@@ -2,11 +2,14 @@ import React from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
+import { Link } from 'react-router-dom';
+
 import BlogForm from '../../components/BlogForm';
 import BlogList from '../../components/BlogList';
 
 import { QUERY_USER, QUERY_ME } from '../../utils/queries';
 
+import { Card, Button } from 'semantic-ui-react'
 
 import Auth from '../../utils/auth';
 
@@ -19,8 +22,41 @@ const Profile = () => {
 
   const user = data?.me || data?.user || {};
   // navigate to personal profile page if username is yours
-  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-    return <Navigate to="/me" />;
+  if (Auth.loggedIn() && Auth.getProfile().data.username === "writteninnacode") {
+    return <div style={{ border: '1px', marginTop: '3rem' }}>
+      <BlogForm />
+      <div >
+
+        {user.blogs && user.blogs.map((blog) => (
+
+          <Card key={blog._id}>
+
+            <h3>
+              <Link to={`/blogs/${blog._id}`}>
+                {blog.blogAuthor}
+                <br />
+                <span style={{ fontSize: '1rem' }}>
+                  created this blog post on {blog.createdAt}
+                </span>
+              </Link>
+             
+            </h3>
+
+
+            <div>
+              <p>{blog.blogText}</p>
+            </div>
+
+            <Link to={`/blogs/${blog._id}`}>
+              Comment on this blog post.
+            </Link>
+            <Button>Delete</Button>
+
+
+          </Card>
+        ))}
+      </div>
+    </div>;
   }
 
   if (loading) {
@@ -52,12 +88,7 @@ const Profile = () => {
           />
         </div>
 
-        {!userParam && (
-          <div style={{ border: '1px dotted #1a1a1a' }}>
-            <BlogForm />
-          </div>
-        )}
-        
+        <br />
       </div>
     </div>
   );

@@ -53,27 +53,31 @@ const SingleBlog = () => {
            style={{
             fontSize: '1.5rem',
             fontStyle: 'italic',
-            border: '2px dotted #1a1a1a',
+            border: '2px',
             lineHeight: '1.5',
           }}
         >
           {blog.blogText}
         </blockquote>
 
-        <Button 
-        // onClick={handleOnClick} 
-        type="click" inverted color='red' content='Delete' />
+        {/* <Button 
+        onClick={handleOnClick} 
+        type="click" inverted color='red' content='Delete' /> */}
 
       </div>
+
+      <br />
 
       <div>
         <CommentList comments={blog.comments} />
       </div>
 
-      <div style={{ border: '1px dotted #1a1a1a' }}>
+      <br />
+
+      <div style={{ border: '' }}>
         <CommentForm blogId={blog._id} />
       </div>
-      
+
     </div>
   );
 };

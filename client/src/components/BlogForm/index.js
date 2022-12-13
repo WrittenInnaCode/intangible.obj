@@ -7,11 +7,12 @@ import { QUERY_BLOGS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-import { Button, Form, TextArea, Grid } from 'semantic-ui-react'
+import { Button, Form, Input, TextArea, Grid } from 'semantic-ui-react'
 
 
 const BlogForm = () => {
   const [blogText, setBlogText] = useState('');
+  // const [blogTitle, setBlogTitle] = useState('');
 
   const [addBlog, { error }] = useMutation(ADD_BLOG, {
     update(cache, { data: { addBlog } }) {
@@ -42,14 +43,16 @@ const BlogForm = () => {
       const { data } = await addBlog({
         variables: {
           blogText,
+          // blogTitle,
           blogAuthor: Auth.getProfile().data.username,
         },
       });
 
       setBlogText('');
+      // setBlogTitle('');
     } catch (err) {
       console.error(err);
-    }
+    };
   };
 
   const handleChange = (event) => {
@@ -69,6 +72,14 @@ const BlogForm = () => {
          
           <Form onSubmit={handleFormSubmit}>
             <Grid.Column>
+            {/* <Input fluid
+                name="blogTitle"
+                placeholder="Blog Title"
+                value={blogTitle}
+                className="form-input w-100"
+                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                onChange={handleChange}
+              ></Input> */}
               <TextArea
                 name="blogText"
                 placeholder="New blog post text"

@@ -42,7 +42,7 @@ const CommentForm = ({ blogId }) => {
 
   return (
     <div>
-      <h4>What are your thoughts on this blog post?</h4>
+      <h4>Leave a comment</h4>
 
       {Auth.loggedIn() ? (
         <>
@@ -59,6 +59,7 @@ const CommentForm = ({ blogId }) => {
               ></TextArea>
             </Grid.Column>
 
+<br />
             <Grid.Column>
               <Button type="submit">
                 Add Comment

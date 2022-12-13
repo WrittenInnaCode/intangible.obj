@@ -28,6 +28,7 @@ export const ADD_BLOG = gql`
   mutation addBlog($blogText: String!) {
     addBlog(blogText: $blogText) {
       _id
+      blogTitle
       blogText
       blogAuthor
       createdAt

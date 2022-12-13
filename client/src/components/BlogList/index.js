@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Card } from 'semantic-ui-react'
+import { Card, Button } from 'semantic-ui-react'
 
 const BlogList = ({
   blogs,
@@ -16,15 +16,15 @@ const BlogList = ({
   return (
     <div>
       {showTitle && <h3>{title}</h3>}
-      {blogs &&
-        blogs.map((blog) => (
+
+      {blogs && blogs.map((blog) => (
 
           <Card key={blog._id}>
 
-            <h4>
+            <h3>
               {showUsername
                 ? (
-                  <Link to={`/profiles/${blog.blogAuthor}`}>
+                  <Link to={`/blogs/${blog._id}`}>
                     {blog.blogAuthor}
                     <br />
                     <span style={{ fontSize: '1rem' }}>
@@ -38,7 +38,7 @@ const BlogList = ({
                     </span>
                   </>
                 )}
-            </h4>
+            </h3>
 
 
             <div>
@@ -46,7 +46,7 @@ const BlogList = ({
             </div>
 
             <Link to={`/blogs/${blog._id}`}>
-              Join the discussion on this blog post.
+              Comment on this blog post.
             </Link>
             
           </Card>
