@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 
 import BlogForm from '../../components/BlogForm';
-import BlogList from '../../components/BlogList';
+// import BlogList from '../../components/BlogList';
 
 import { QUERY_USER, QUERY_ME } from '../../utils/queries';
 
@@ -21,10 +21,17 @@ const Profile = () => {
   });
 
   const user = data?.me || data?.user || {};
-  // navigate to personal profile page if username is yours
+
+
+  // navigate to personal profile page if you are the admin
   if (Auth.loggedIn() && Auth.getProfile().data.username === "writteninnacode") {
-    return <div style={{ border: '1px', marginTop: '3rem' }}>
+
+    return <div>
+
+      <h1>Admin's Page</h1>
+
       <BlogForm />
+
       <div >
 
         {user.blogs && user.blogs.map((blog) => (
@@ -39,9 +46,9 @@ const Profile = () => {
                   created this blog post on {blog.createdAt}
                 </span>
               </Link>
-             
             </h3>
 
+            <h4>{blog.blogTitle}</h4>
 
             <div>
               <p>{blog.blogText}</p>
@@ -50,7 +57,7 @@ const Profile = () => {
             <Link to={`/blogs/${blog._id}`}>
               Comment on this blog post.
             </Link>
-            <Button>Delete</Button>
+            <Button type="click">Delete</Button>
 
 
           </Card>
@@ -72,26 +79,26 @@ const Profile = () => {
     );
   }
 
-  return (
-    <div>
-      <div>
-        <h2>
-          Viewing {userParam ? `${user.username}'s` : 'your'} profile.
-        </h2>
+  // return (
+  //   <div>
+  //     <div>
+  //       <h2>
+  //         Viewing {userParam ? `${user.username}'s` : 'your'} profile.
+  //       </h2>
 
-        <div >
-          <BlogList
-            blogs={user.blogs}
-            title={`${user.username}'s blog posts...`}
-            showTitle={false}
-            showUsername={false}
-          />
-        </div>
+  //       <div >
+  //         <BlogList
+  //           blogs={user.blogs}
+  //           title={`${user.username}'s blog posts...`}
+  //           showTitle={false}
+  //           showUsername={false}
+  //         />
+  //       </div>
 
-        <br />
-      </div>
-    </div>
-  );
+  //       <br />
+  //     </div>
+  //   </div>
+  // );
 };
 
 export default Profile;

@@ -19,6 +19,7 @@ export const QUERY_USER = gql`
       blogs {
         _id
         blogText
+        blogTitle
         createdAt
       }
     }
@@ -31,6 +32,7 @@ export const QUERY_BLOGS = gql`
     blogs {
       _id
       blogText
+      blogTitle
       blogAuthor
       createdAt
     }
@@ -42,6 +44,7 @@ export const QUERY_SINGLE_BLOG = gql`
     blog(blogId: $blogId) {
       _id
       blogText
+      blogTitle
       blogAuthor
       createdAt
       comments {
@@ -73,6 +76,7 @@ export const QUERY_ME = gql`
       blogs {
         _id
         blogText
+        blogTitle
         blogAuthor
         createdAt
       }

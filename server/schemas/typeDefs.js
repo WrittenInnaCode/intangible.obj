@@ -12,6 +12,7 @@ const typeDefs = gql`
 	type Blog {
     	_id: ID
     	blogText: String
+		blogTitle: String
     	blogAuthor: String
     	createdAt: String
     	comments: [Comment]!
@@ -40,7 +41,7 @@ const typeDefs = gql`
 	type Mutation {
 		addUser(username: String!, email: String!, password: String!): Auth
 		login(email: String!, password: String!): Auth
-    	addBlog(blogText: String!): Blog
+    	addBlog(blogText: String!, blogTitle: String!): Blog
     	addComment(blogId: ID!, commentText: String!): Blog
     	removeBlog(blogId: ID!): Blog
     	removeComment(blogId: ID!, commentId: ID!): Blog

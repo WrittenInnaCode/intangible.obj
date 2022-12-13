@@ -39,7 +39,9 @@ const BlogList = ({
                   </>
                 )}
             </h3>
-
+<div>
+  <h4>{blog.blogTitle}</h4>
+</div>
 
             <div>
               <p>{blog.blogText}</p>

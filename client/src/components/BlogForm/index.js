@@ -7,12 +7,12 @@ import { QUERY_BLOGS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-import { Button, Form, Input, TextArea, Grid } from 'semantic-ui-react'
+import { Button, Form, TextArea, Grid } from 'semantic-ui-react'
 
 
 const BlogForm = () => {
   const [blogText, setBlogText] = useState('');
-  // const [blogTitle, setBlogTitle] = useState('');
+  const [blogTitle, setBlogTitle] = useState('');
 
   const [addBlog, { error }] = useMutation(ADD_BLOG, {
     update(cache, { data: { addBlog } }) {
@@ -43,13 +43,13 @@ const BlogForm = () => {
       const { data } = await addBlog({
         variables: {
           blogText,
-          // blogTitle,
+          blogTitle,
           blogAuthor: Auth.getProfile().data.username,
         },
       });
 
       setBlogText('');
-      // setBlogTitle('');
+      setBlogTitle('');
     } catch (err) {
       console.error(err);
     };
@@ -58,9 +58,14 @@ const BlogForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
+    
     if (name === 'blogText') {
       setBlogText(value);
-    }
+    } else if (name === 'blogTitle') {
+      setBlogTitle(value);
+    };
+
+
   };
 
   return (
@@ -69,22 +74,20 @@ const BlogForm = () => {
 
       {Auth.loggedIn() ? (
         <>
-         
-          <Form onSubmit={handleFormSubmit}>
+
+          <Form onSubmit={handleFormSubmit} style={{ marginBottom: '3rem' }}>
             <Grid.Column>
-            {/* <Input fluid
+              <input fluid 
                 name="blogTitle"
                 placeholder="Blog Title"
                 value={blogTitle}
-                className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
-              ></Input> */}
+              ></input>
               <TextArea
                 name="blogText"
                 placeholder="New blog post text"
                 value={blogText}
-                className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
               ></TextArea>

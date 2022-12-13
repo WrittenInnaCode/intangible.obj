@@ -8,6 +8,12 @@ const blogSchema = new Schema({
     minlength: 1,
     trim: true,
   },
+  blogTitle: {
+    type: String,
+    required: 'You need a title!',
+    minlength: 1,
+    trim: true,
+  },
   blogAuthor: {
     type: String,
     required: true,
