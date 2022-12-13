@@ -51,7 +51,7 @@ const Login = (props) => {
           <Grid columns={2} relaxed='very' stackable>
             <Grid.Column>
               <div className='login'>
-                <h4 >Login</h4>
+                
                 {data ? (
                   <p>
                     Success! You may now head{' '}
@@ -88,7 +88,7 @@ const Login = (props) => {
                     <br />
                     <br />
 
-                    <Button type="submit" inverted color='violet' content='Submit' />
+                    <Button type="submit" content='Log In' />
 
 
                   </Form>

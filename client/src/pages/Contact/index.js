@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 
-import { Container, Button, Form, Input, Icon, Divider, Grid, Segment } from 'semantic-ui-react'
+import { Button, Message } from 'semantic-ui-react'
 
 function Contact() {
 
@@ -29,46 +29,45 @@ function Contact() {
 			.then((result) => {
 				console.log(result.text);
 
-				// e.target.reset(); ???????
+				// e.target.reset(); ???
 
 			}, (error) => {
 				console.log(error.text);
 			});
-		setFormState({ user_name: "", user_email: "", subject: "", message: "" })
+		setFormState({ user_name: "", user_email: "", message: "" })
 		setHiddenState(false);
 	}
 
 	return (
 		<div>
-			<h2>
+			<h3>
 				Are you interested in a specific artwork or do you want to discuss a custom piece?
-			</h2>
+			</h3>
 			<p>
 				Please complete the form below
 			</p>
 			<br />
 
-			<Form ref={form} onSubmit={sendEmail} className="contact-form">
+			<form ref={form} onSubmit={sendEmail} className="contact-form">
 				<div className="user-info">
-					<div><input type="text" value={user_name} name="user_name" className="name-input" id="contact-name" placeholder='Name' onChange={handleChange}></input></div>
-					<br />
+					<input type="text" value={user_name} name="user_name" className="name-input" id="contact-name" placeholder='Name' onChange={handleChange}></input>
 					<input type="email" value={user_email} name="user_email" className="email-input" id="contact-email" placeholder='Email' onChange={handleChange}></input>
 				</div>
-				<br />
+
 				<div className="message-content">
 					{/* <input name="subject" value={subject} className="subject-input" id="contact-subject" placeholder='subject' onChange={handleChange}></input> */}
-					<textarea name="message" value={message} className="message-input" id="contact-message" placeholder='Message' onChange={handleChange}></textarea>
+					<textarea name="message" value={message} className="message-input" id="contact-message" placeholder='Message' onChange={handleChange} rows="4"></textarea>
 				</div>
 				<br />
 				<div className="send-button">
-					<input type="submit" value="send" id="send-email" />
+					<Button color='pink' type="submit" value="send" id="send-email">Submit</Button>
 				</div>
-				<br />
-				<div className={hiddenState ? "hidden-toast" : ""}>
-					Your Message Has Been Sent!
-				</div>
-			</Form>
 
+				<br />
+				<Message success compact className={hiddenState ? "hidden" : ""}>
+					Thank you, your message has been sent!
+				</Message>
+			</form>
 		</div>
 	);
 }

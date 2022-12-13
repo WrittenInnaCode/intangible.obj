@@ -33,3 +33,33 @@ body {
     align-items: center;
     flex-direction: column;
 }
+
+.name-input{
+    width: 100%;
+    padding: 10px 15px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 0.6px solid darkgrey;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.email-input{
+    width: 100%;
+    padding: 10px 15px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 0.6px solid darkgrey;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.message-input{
+    width: 100%;
+    padding: 10px 15px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 0.6px solid darkgrey;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
