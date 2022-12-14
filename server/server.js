@@ -2,6 +2,8 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
+// const cors = require('cors');
+// const cloudinary = require('cloudinary');
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
@@ -16,6 +18,31 @@ const server = new ApolloServer({
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+
+// require("dotenv").config();
+
+// cloudinary.config({
+// 	cloud_name: process.env.CLOUD_NAME,
+// 	api_key: process.env.CLOUD_API_KEY,
+// 	api_secret: process.env.CLOUD_API_SECRET
+// });
+
+// app.use(cors());
+// app.delete('/:public_id', async (req, res) => {
+// 	const { public_id } = req.params;
+// 	try {
+// 		await cloudinary.UploadStream.destroy(public_id);
+// 		res.status(200).send();
+// 	} catch(err) {
+// 		res.status(400).send();
+// 	}
+// });
+
+// app.listen(8080, () => {
+// 	console.log('server running')
+// })
+
 
 // Serve up static assets
 if (process.env.NODE_ENV === 'production') {

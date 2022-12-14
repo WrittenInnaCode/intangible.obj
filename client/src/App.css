@@ -63,3 +63,21 @@ body {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+.imgPreview-container{
+display: flex;
+}
+
+.imgPreview {
+    position: relative;
+    max-width: 300px;
+    max-height: 300px;
+    margin: 1rem;
+}
+
+.closeIcon{
+    position: absolute;
+}
+.closeIcon:hover{
+    cursor: pointer;
+}

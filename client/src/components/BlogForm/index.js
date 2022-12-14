@@ -7,12 +7,16 @@ import { QUERY_BLOGS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-import { Button, Form, TextArea, Grid } from 'semantic-ui-react'
+import { Button, Form, TextArea, Grid, Icon } from 'semantic-ui-react'
+// import axios from 'axios';
 
 
 const BlogForm = () => {
   const [blogText, setBlogText] = useState('');
   const [blogTitle, setBlogTitle] = useState('');
+  const [images, setImages] = useState([]);
+  // const [imageToRemove, setImageToRemove] = useState('');
+
 
   const [addBlog, { error }] = useMutation(ADD_BLOG, {
     update(cache, { data: { addBlog } }) {
@@ -36,6 +40,35 @@ const BlogForm = () => {
     },
   });
 
+
+  // function handleRemoveImg(imgObj) {
+  //   setImageToRemove(imgObj.public_id);
+  //   axios.delete(`http://localhost:8080/${imgObj.public_id}`)
+  //     .then(() => {
+  //       setImageToRemove(null);
+  //       setImages((prev) => prev.filter((img) => img.public_id !== imgObj.public_id));
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
+
+
+
+  function handleOpenWidget(event) {
+    event.preventDefault()
+    var myWidget = window.cloudinary.createUploadWidget({
+      cloudName: 'dbudwdvhb',
+      uploadPreset: 'd9fw2ton'
+    }, (error, result) => {
+      if (!error && result && result.event === "success") {
+        console.log('Done! Here is the image info: ', result.info);
+        setImages((prev) => [...prev, { url: result.info.url, public_id: result.info.public_id }]);
+      }
+    });
+    myWidget.open();
+  }
+
+
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -58,7 +91,6 @@ const BlogForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    
     if (name === 'blogText') {
       setBlogText(value);
     } else if (name === 'blogTitle') {
@@ -77,13 +109,14 @@ const BlogForm = () => {
 
           <Form onSubmit={handleFormSubmit} style={{ marginBottom: '3rem' }}>
             <Grid.Column>
-              <input fluid 
+              <input fluid
                 name="blogTitle"
                 placeholder="Blog Title"
                 value={blogTitle}
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
               ></input>
+              <div><br /></div>
               <TextArea
                 name="blogText"
                 placeholder="New blog post text"
@@ -94,9 +127,27 @@ const BlogForm = () => {
             </Grid.Column>
 
             <Grid.Column>
+
+
+              <Button onClick={handleOpenWidget}>Upload Picture</Button>
+
+              <div className='imgPreview-container'>
+
+                {images.map((image) => (
+                  <div>
+                    <img className='imgPreview' src={image.url} />
+                    {/* {imageToRemove != image.public_id && <Icon className='close closeIcon' circular color='pink' onClick={() => handleRemoveImg(image)} />} */}
+                  </div>
+                ))}
+
+              </div>
+
+
+              <div><br /></div>
               <Button type="submit">
                 Add a Blog Post
               </Button>
+
             </Grid.Column>
             {error && (
               <div>
