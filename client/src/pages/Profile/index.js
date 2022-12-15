@@ -48,33 +48,54 @@ const Profile = () => {
 
         {user.blogs && user.blogs.map((blog) => (
 
-          <Card key={blog._id}>
-
-            <h3>
-              <Link to={`/blogs/${blog._id}`}>
-                {blog.blogAuthor}
-                <br />
-                <span style={{ fontSize: '1rem' }}>
-                  created this blog post on {blog.createdAt}
-                </span>
-              </Link>
-            </h3>
-
-            <h4>{blog.blogTitle}</h4>
-
-            <div>
-              <p>{blog.blogText}</p>
-            </div>
+          <Card key={blog._id} style={{ padding: '0.5rem' }}>
 
             <Link to={`/blogs/${blog._id}`}>
-              Comment on this blog post.
+              <h2>{blog.blogTitle}</h2>
             </Link>
+
+            <p>{blog.blogAuthor}, {blog.createdAt}</p>
+
+            <p style={{ fontSize: '20px', paddingBottom: '0.5rem' }}>{blog.blogText}</p>
+
+            {/* <Link to={`/blogs/${blog._id}`}>
+              Comment on this blog post.
+            </Link> */}
+
             <Button.Group>
-              <Button type="click" onClick={() => handleOnClick (blog._id)}>Delete</Button>
-              <Button>Edit</Button>
+              <Button type="click" onClick={() => handleOnClick(blog._id)}>Delete</Button>
+              {/* <Button>Edit</Button> */}
             </Button.Group>
 
           </Card>
+
+          // <Card key={blog._id}>
+
+          //   <h3>
+          //     <Link to={`/blogs/${blog._id}`}>
+          //       {blog.blogAuthor}
+          //       <br />
+          //       <span style={{ fontSize: '1rem' }}>
+          //         created this blog post on {blog.createdAt}
+          //       </span>
+          //     </Link>
+          //   </h3>
+
+          //   <h4>{blog.blogTitle}</h4>
+
+          //   <div>
+          //     <p>{blog.blogText}</p>
+          //   </div>
+
+          //   <Link to={`/blogs/${blog._id}`}>
+          //     Comment on this blog post.
+          //   </Link>
+          //   <Button.Group>
+          //     <Button type="click" onClick={() => handleOnClick (blog._id)}>Delete</Button>
+          //     <Button>Edit</Button>
+          //   </Button.Group>
+
+          // </Card>
         ))}
       </div>
     </div>;
@@ -93,26 +114,6 @@ const Profile = () => {
     );
   }
 
-  // return (
-  //   <div>
-  //     <div>
-  //       <h2>
-  //         Viewing {userParam ? `${user.username}'s` : 'your'} profile.
-  //       </h2>
-
-  //       <div >
-  //         <BlogList
-  //           blogs={user.blogs}
-  //           title={`${user.username}'s blog posts...`}
-  //           showTitle={false}
-  //           showUsername={false}
-  //         />
-  //       </div>
-
-  //       <br />
-  //     </div>
-  //   </div>
-  // );
 };
 
 export default Profile;

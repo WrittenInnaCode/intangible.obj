@@ -20,6 +20,7 @@ export const QUERY_USER = gql`
         _id
         blogText
         blogTitle
+        blogImage
         createdAt
       }
     }
@@ -34,6 +35,7 @@ export const QUERY_BLOGS = gql`
       blogText
       blogTitle
       blogAuthor
+      blogImage
       createdAt
     }
   }
@@ -46,6 +48,7 @@ export const QUERY_SINGLE_BLOG = gql`
       blogText
       blogTitle
       blogAuthor
+      blogImage
       createdAt
       comments {
         _id
@@ -78,6 +81,7 @@ export const QUERY_ME = gql`
         blogText
         blogTitle
         blogAuthor
+        blogImage
         createdAt
       }
     }

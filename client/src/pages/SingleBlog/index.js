@@ -8,7 +8,6 @@ import CommentList from '../../components/CommentList';
 import CommentForm from '../../components/CommentForm';
 
 import { QUERY_SINGLE_BLOG } from '../../utils/queries';
-// import { REMOVE_BLOG } from '../../utils/mutations';
 
 import { Button } from 'semantic-ui-react'
 
@@ -21,17 +20,6 @@ const SingleBlog = () => {
     variables: { blogId: blogId },
   });
 
-  // const [removeBlog] = useMutation(REMOVE_BLOG);
-
-  // const handleOnClick = async (blogId) => {
-  //     const { data } = await removeBlog({
-  //       variables: { blogId },
-  //     });
-  //   }
-
-  // const handleOnClick = () => {
-  //   removeBlog({ variables: { blogId }});
-  // }
 
   const blog = data?.blog || {};
 
@@ -40,19 +28,14 @@ const SingleBlog = () => {
   }
   return (
     <div >
+      <h1 style={{ fontStyle: 'italic' }}>{blog.blogTitle} </h1>
 
-      <h3>
-        {blog.blogAuthor} <br />
-        <span style={{ fontSize: '1rem' }}>
-          posted this blog on {blog.createdAt}
-        </span>
-      </h3>
+      <img style={{width: '300px', paddingBottom: '2rem'}}>{blog.blogImage}</img>
 
       <div >
         <blockquote
-           style={{
+          style={{
             fontSize: '1.5rem',
-            fontStyle: 'italic',
             border: '2px',
             lineHeight: '1.5',
           }}
@@ -60,11 +43,13 @@ const SingleBlog = () => {
           {blog.blogText}
         </blockquote>
 
-        {/* <Button 
-        onClick={handleOnClick} 
-        type="click" inverted color='red' content='Delete' /> */}
 
       </div>
+
+      <h3 style={{ fontSize: '1rem', paddingBottom: '2rem' }}>
+        {blog.blogAuthor} {''}
+        <span> posted on {blog.createdAt} </span>
+      </h3>
 
       <br />
 

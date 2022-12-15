@@ -14,6 +14,7 @@ import { Button, Form, TextArea, Grid, Icon } from 'semantic-ui-react'
 const BlogForm = () => {
   const [blogText, setBlogText] = useState('');
   const [blogTitle, setBlogTitle] = useState('');
+  const [blogImage, setBlogImage] = useState('');
   const [images, setImages] = useState([]);
   // const [imageToRemove, setImageToRemove] = useState('');
 
@@ -77,12 +78,14 @@ const BlogForm = () => {
         variables: {
           blogText,
           blogTitle,
+          blogImage,
           blogAuthor: Auth.getProfile().data.username,
         },
       });
 
       setBlogText('');
       setBlogTitle('');
+      setBlogImage('')
     } catch (err) {
       console.error(err);
     };
@@ -95,6 +98,8 @@ const BlogForm = () => {
       setBlogText(value);
     } else if (name === 'blogTitle') {
       setBlogTitle(value);
+    } else if (name === 'blogImage') {
+      setBlogImage(value);
     };
 
 
@@ -128,14 +133,23 @@ const BlogForm = () => {
 
             <Grid.Column>
 
-
+              <br />
               <Button onClick={handleOpenWidget}>Upload Picture</Button>
+
+              {/* <div>
+                value={blogImage}
+                name="blogImage"
+                onChange={handleChange}
+              </div> */}
 
               <div className='imgPreview-container'>
 
                 {images.map((image) => (
                   <div>
-                    <img className='imgPreview' src={image.url} />
+                    <img
+                      src={image.url}
+                      className='imgPreview'
+                    />
                     {/* {imageToRemove != image.public_id && <Icon className='close closeIcon' circular color='pink' onClick={() => handleRemoveImg(image)} />} */}
                   </div>
                 ))}

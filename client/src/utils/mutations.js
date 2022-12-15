@@ -25,12 +25,13 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_BLOG = gql`
-  mutation addBlog($blogText: String!, $blogTitle: String!) {
-    addBlog(blogText: $blogText, blogTitle: $blogTitle) {
+  mutation addBlog($blogText: String!, $blogTitle: String!, $blogImage: String!) {
+    addBlog(blogText: $blogText, blogTitle: $blogTitle, blogImage: $blogImage) {
       _id
       blogTitle
       blogText
       blogAuthor
+      blogImage 
       createdAt
       comments {
         _id
@@ -47,6 +48,7 @@ export const REMOVE_BLOG = gql`
       blogText
       blogTitle
       blogAuthor
+      blogImage
       createdAt
       comments {
         _id
@@ -63,6 +65,7 @@ export const ADD_COMMENT = gql`
       blogText
       blogTitle
       blogAuthor
+      blogImage
       createdAt
       comments {
         _id
