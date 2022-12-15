@@ -5,14 +5,14 @@ import { useQuery, useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
 
 import BlogForm from '../../components/BlogForm';
-// import BlogList from '../../components/BlogList';
 
 import { QUERY_USER, QUERY_ME } from '../../utils/queries';
 import { REMOVE_BLOG } from '../../utils/mutations';
 
-import { Card, Button } from 'semantic-ui-react'
+import { Card, Button, Divider, Header, Grid, Image, Segment } from 'semantic-ui-react'
 
 import Auth from '../../utils/auth';
+
 
 const Profile = () => {
 
@@ -40,65 +40,45 @@ const Profile = () => {
 
     return <div>
 
-      <h1>Admin's Page</h1>
+      <h1 style={{ marginBottom: '3rem' }}>Admin's Page</h1>
 
       <BlogForm />
 
-      <div >
+      <Divider horizontal style={{ paddingTop: '6rem', marginBottom: '4rem' }}>
+        <Header as='h3'>Your Blog Posts</Header>
+      </Divider>
 
-        {user.blogs && user.blogs.map((blog) => (
+      <Grid stackable>
+        <Grid.Row columns={3} >
 
-          <Card key={blog._id} style={{ padding: '0.5rem' }}>
+          {user.blogs && user.blogs.map((blog) => (
+            <Grid.Column >
 
-            <Link to={`/blogs/${blog._id}`}>
-              <h2>{blog.blogTitle}</h2>
-            </Link>
+              <Card key={blog._id} style={{ marginBottom: '4rem' }}>
 
-            <p>{blog.blogAuthor}, {blog.createdAt}</p>
-            
-            <img src={blog.blogImage} style={{ maxWidth: '300px', padding: '0.5rem' }} />
-            <p style={{ fontSize: '20px', paddingBottom: '0.5rem' }}>{blog.blogText}</p>
+                <Link to={`/blogs/${blog._id}`}>
+                  <h2>{blog.blogTitle}</h2>
+                </Link>
 
-            {/* <Link to={`/blogs/${blog._id}`}>
-              Comment on this blog post.
-            </Link> */}
+                <Card.Meta>{blog.createdAt}</Card.Meta>
 
-            <Button.Group>
-              <Button type="click" onClick={() => handleOnClick(blog._id)}>Delete</Button>
-              {/* <Button>Edit</Button> */}
-            </Button.Group>
+                <Link to={`/blogs/${blog._id}`}>
+                <Image src={blog.blogImage} />
+                {/* <p style={{ fontSize: '20px', paddingBottom: '0.5rem' }}>{blog.blogText}</p> */}
+                </Link>
 
-          </Card>
+                <Button inverted color='red' size='mini' type="click" onClick={() => handleOnClick(blog._id)} >Delete</Button>
+                {/* <Button>Edit</Button> */}
 
-          // <Card key={blog._id}>
+              </Card>
 
-          //   <h3>
-          //     <Link to={`/blogs/${blog._id}`}>
-          //       {blog.blogAuthor}
-          //       <br />
-          //       <span style={{ fontSize: '1rem' }}>
-          //         created this blog post on {blog.createdAt}
-          //       </span>
-          //     </Link>
-          //   </h3>
+            </Grid.Column>
 
-          //   <h4>{blog.blogTitle}</h4>
+          ))}
 
-          //   <div>
-          //     <p>{blog.blogText}</p>
-          //   </div>
+        </Grid.Row>
+      </Grid>
 
-          //   <Link to={`/blogs/${blog._id}`}>
-          //     Comment on this blog post.
-          //   </Link>
-          //   <Button.Group>
-          //     <Button type="click" onClick={() => handleOnClick (blog._id)}>Delete</Button>
-          //     <Button>Edit</Button>
-          //   </Button.Group>
-
-          // </Card>
-        ))}
-      </div>
     </div>;
   }
 

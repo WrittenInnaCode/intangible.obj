@@ -7,8 +7,7 @@ import { QUERY_BLOGS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-import { Button, Form, TextArea, Grid } from 'semantic-ui-react'
-// import axios from 'axios';
+import { Segment, Button, Form, TextArea, Grid, Message, Image, Icon, Divider, Header } from 'semantic-ui-react'
 
 
 const BlogForm = () => {
@@ -96,63 +95,80 @@ const BlogForm = () => {
 
   return (
     <div>
-      <h3>Create a new blog post</h3>
+
+      <Divider horizontal style={{ marginTop: '3rem', marginBottom: '3rem' }}>
+        <Header as='h3'>
+          Create a new blog post
+        </Header>
+      </Divider>
 
       {Auth.loggedIn() ? (
         <>
 
-          <Form onSubmit={handleFormSubmit} style={{ marginBottom: '3rem' }}>
-            <Grid.Column>
-              <input
-                name="blogTitle"
-                placeholder="Blog Title"
-                value={blogTitle}
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
-              ></input>
-              <div><br /></div>
-              <TextArea
-                name="blogText"
-                placeholder="New blog post text"
-                value={blogText}
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
-              ></TextArea>
-            </Grid.Column>
+          <Form onSubmit={handleFormSubmit} className='blogForm'>
+            <Segment.Group>
+              <Segment secondary>
+                <Grid.Column>
+                  <input
+                    name="blogTitle"
+                    placeholder="Blog Title"
+                    value={blogTitle}
+                    style={{ lineHeight: '1.5', resize: 'vertical' }}
+                    onChange={handleChange}
+                  ></input>
+                  <div><br /></div>
+                  <TextArea
+                    name="blogText"
+                    placeholder="New blog post text"
+                    value={blogText}
+                    style={{ lineHeight: '1.5', resize: 'vertical' }}
+                    onChange={handleChange}
+                  ></TextArea>
+                </Grid.Column>
 
-            <Grid.Column>
+                <Grid.Column>
 
-              <br />
-              <Button onClick={handleOpenWidget}>Upload Picture</Button>
+                  <br />
+                  <Button onClick={handleOpenWidget} basic color='blue'><Icon disabled name='images' />Upload Picture</Button>
 
 
-              <div className='imgPreview-container'>
+                  <div className='imgPreview-container'>
 
-                {blogImage.map((image) => (
-                  <div>
-                    <img
-                      src={image.url}
-                      className='imgPreview'
-                    />
+                    {blogImage.map((image) => (
+                      <div>
+                        <Image
+                          src={image.url}
+                          className='imgPreview'
+                          rounded
+                          centered
+                        />
+
+                      </div>
+                    ))}
 
                   </div>
-                ))}
 
-              </div>
+                </Grid.Column>
+
+              </Segment>
 
 
-              <div><br /></div>
-              <Button type="submit">
-                Add a Blog Post
-              </Button>
+              <Segment secondary>
+                <Button type="submit" basic color='violet'><Icon disabled name='check' />
+                  Add a Blog Post
+                </Button>
+              </Segment>
 
-            </Grid.Column>
-            {error && (
-              <div>
-                {error.message}
-              </div>
-            )}
+            </Segment.Group>
+
           </Form>
+
+          {error && (
+            <Message warning attached='bottom'>
+              {error.message}
+            </Message>
+          )}
+
         </>
       ) : (
         <p>

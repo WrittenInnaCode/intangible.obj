@@ -12,7 +12,7 @@ const resolvers = {
 		},
 		blogs: async (parent, { username }) => {
 			const params = username ? { username } : {};
-			return Blog.find(params).sort({ createdAt: -1 });
+			return Blog.find(params).sort({ _id: -1 });
 		},
 		blog: async (parent, { blogId }) => {
 			return Blog.findOne({ _id: blogId });
@@ -64,7 +64,7 @@ const resolvers = {
 
 		addBlog: async (parent, { blogText, blogTitle, blogImage }, context) => {
 		  if (context.user) {
-			console.log(typeof blogImage)
+			// console.log(typeofblogImage)
 			const blog = await Blog.create({
 			  blogText,
 			  blogTitle,

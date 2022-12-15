@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Divider } from 'semantic-ui-react'
+import { Divider, Button } from 'semantic-ui-react'
 
 import Auth from '../../utils/auth';
 
@@ -23,11 +23,10 @@ const Header = () => {
           {Auth.loggedIn() ? (
             <>
               <Link to="/me">
-                {Auth.getProfile().data.username}'s profile
+                {Auth.getProfile().data.username}'s profile {' '}
               </Link>
-              <button onClick={logout}>
-                Logout
-              </button>
+              <Button onClick={logout} icon='log out' inverted color='pink' circular />
+              
             </>
           ) : (
             <>

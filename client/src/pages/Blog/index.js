@@ -25,7 +25,7 @@ function Blog() {
 					: (
 						<BlogList
 							blogs={blogs}
-							title="Blog posts:"
+							title="Blog"
 						/>
 					)}
 			</div>

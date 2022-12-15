@@ -64,9 +64,6 @@ body {
     box-sizing: border-box;
 }
 
-.imgPreview-container{
-display: flex;
-}
 
 .imgPreview {
     position: relative;
@@ -75,10 +72,9 @@ display: flex;
     margin: 1rem;
 }
 
-/* .closeIcon{
-    position: absolute;
-}
-.closeIcon:hover{
-    cursor: pointer;
-} */
 
+.blogForm{
+    background-color: rgb(246, 192, 255);
+    /* border: 2px solid rgb(253, 219, 255);  */
+    border-radius: 5px;
+}

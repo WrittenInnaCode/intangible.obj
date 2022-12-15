@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Card, Image } from 'semantic-ui-react'
+import { Card, Image, Container, Divider } from 'semantic-ui-react'
 
 const BlogList = ({
   blogs,
@@ -18,34 +18,40 @@ const BlogList = ({
 
       {/* BLOG POSTS PAGE */}
 
-      {showTitle && <h3>{title}</h3>}
+      {showTitle && <h1>{title}</h1>}
 
+     
       {blogs && blogs.map((blog) => (
 
-        <Card key={blog._id} >
+        <Container key={blog._id} style={{ marginTop: '3rem', marginBottom: '5rem' }}>
+
+          <Divider style={{ marginTop: '3rem', marginBottom: '5rem' }} />
 
           <Link to={`/blogs/${blog._id}`}>
-            <Card.Header className='cardHeader'>{blog.blogTitle}</Card.Header>
+            <h2 style={{ marginBottom: '2rem' }}>{blog.blogTitle}</h2>
+          </Link>
 
-            <Image src={blog.blogImage} />
+          <Link to={`/blogs/${blog._id}`}>
+            <Image src={blog.blogImage} style={{ maxWidth: '500px', maxHeight: '400px' }} />
           </Link>
 
           <br />
 
-            <Card.Meta>
-              <span>{blog.createdAt}</span>
-            </Card.Meta>
+          <Card.Meta>
+            <p>Posted on {blog.createdAt}</p>
+          </Card.Meta>
 
+          {/* <p style={{ fontSize: '20px', paddingBottom: '0.5rem' }}>{blog.blogText}</p> */}
 
-            {/* <p style={{ fontSize: '20px', paddingBottom: '0.5rem' }}>{blog.blogText}</p> */}
+          <Link to={`/blogs/${blog._id}`}>
+            Comment on this blog post.
+          </Link>
 
-            <Link to={`/blogs/${blog._id}`}>
-              Comment on this blog post.
-            </Link>
-            
+        </Container>
 
-        </Card>
       ))}
+
+
     </div>
   );
 };
