@@ -56,14 +56,14 @@ function App() {
         <>
           <Header />
 
-          <Grid stackable>
+          <Grid stackable className='grid'>
 
             <Grid.Column width={4}>
               <Navbar />
             </Grid.Column>
 
 
-            <Grid.Column stretched width={10} className="noPadding">
+            <Grid.Column centered  width={10} className="noPadding">
               
               <Container >
                 <Routes>

@@ -30,7 +30,7 @@ const SingleBlog = () => {
     <div >
       <h1 style={{ fontStyle: 'italic' }}>{blog.blogTitle} </h1>
 
-      <img style={{width: '300px', paddingBottom: '2rem'}}>{blog.blogImage}</img>
+      <img src={blog.blogImage} style={{ maxWidth: '300px', padding: '0.5rem' }} />
 
       <div >
         <blockquote

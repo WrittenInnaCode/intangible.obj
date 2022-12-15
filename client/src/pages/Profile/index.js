@@ -55,7 +55,8 @@ const Profile = () => {
             </Link>
 
             <p>{blog.blogAuthor}, {blog.createdAt}</p>
-
+            
+            <img src={blog.blogImage} style={{ maxWidth: '300px', padding: '0.5rem' }} />
             <p style={{ fontSize: '20px', paddingBottom: '0.5rem' }}>{blog.blogText}</p>
 
             {/* <Link to={`/blogs/${blog._id}`}>

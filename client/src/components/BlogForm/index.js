@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
@@ -7,16 +7,15 @@ import { QUERY_BLOGS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-import { Button, Form, TextArea, Grid, Icon } from 'semantic-ui-react'
+import { Button, Form, TextArea, Grid } from 'semantic-ui-react'
 // import axios from 'axios';
 
 
 const BlogForm = () => {
   const [blogText, setBlogText] = useState('');
   const [blogTitle, setBlogTitle] = useState('');
-  const [blogImage, setBlogImage] = useState('');
-  const [images, setImages] = useState([]);
-  // const [imageToRemove, setImageToRemove] = useState('');
+  const [blogImage, setBlogImage] = useState([]);
+  const [imageURL, setImageURL] = useState('');
 
 
   const [addBlog, { error }] = useMutation(ADD_BLOG, {
@@ -41,18 +40,8 @@ const BlogForm = () => {
     },
   });
 
-
-  // function handleRemoveImg(imgObj) {
-  //   setImageToRemove(imgObj.public_id);
-  //   axios.delete(`http://localhost:8080/${imgObj.public_id}`)
-  //     .then(() => {
-  //       setImageToRemove(null);
-  //       setImages((prev) => prev.filter((img) => img.public_id !== imgObj.public_id));
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
-
-
+  // solves problem of state not being set by re-rendering the page (setImageURL(result.info.url) line 57)
+  useEffect(() => { })
 
   function handleOpenWidget(event) {
     event.preventDefault()
@@ -62,7 +51,8 @@ const BlogForm = () => {
     }, (error, result) => {
       if (!error && result && result.event === "success") {
         console.log('Done! Here is the image info: ', result.info);
-        setImages((prev) => [...prev, { url: result.info.url, public_id: result.info.public_id }]);
+        setBlogImage((prev) => [...prev, { url: result.info.url, public_id: result.info.public_id }]);
+        setImageURL(result.info.url)
       }
     });
     myWidget.open();
@@ -72,20 +62,21 @@ const BlogForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    // console.log("url ", blogImage.url)
     try {
       const { data } = await addBlog({
         variables: {
           blogText,
           blogTitle,
-          blogImage,
+          // blogImage: blogImage.url,
+          blogImage: imageURL,
           blogAuthor: Auth.getProfile().data.username,
         },
       });
 
       setBlogText('');
       setBlogTitle('');
-      setBlogImage('')
+      window.location.reload();
     } catch (err) {
       console.error(err);
     };
@@ -98,8 +89,6 @@ const BlogForm = () => {
       setBlogText(value);
     } else if (name === 'blogTitle') {
       setBlogTitle(value);
-    } else if (name === 'blogImage') {
-      setBlogImage(value);
     };
 
 
@@ -114,7 +103,7 @@ const BlogForm = () => {
 
           <Form onSubmit={handleFormSubmit} style={{ marginBottom: '3rem' }}>
             <Grid.Column>
-              <input fluid
+              <input
                 name="blogTitle"
                 placeholder="Blog Title"
                 value={blogTitle}
@@ -136,21 +125,16 @@ const BlogForm = () => {
               <br />
               <Button onClick={handleOpenWidget}>Upload Picture</Button>
 
-              {/* <div>
-                value={blogImage}
-                name="blogImage"
-                onChange={handleChange}
-              </div> */}
 
               <div className='imgPreview-container'>
 
-                {images.map((image) => (
+                {blogImage.map((image) => (
                   <div>
                     <img
                       src={image.url}
                       className='imgPreview'
                     />
-                    {/* {imageToRemove != image.public_id && <Icon className='close closeIcon' circular color='pink' onClick={() => handleRemoveImg(image)} />} */}
+
                   </div>
                 ))}
 

@@ -64,6 +64,7 @@ const resolvers = {
 
 		addBlog: async (parent, { blogText, blogTitle, blogImage }, context) => {
 		  if (context.user) {
+			console.log(typeof blogImage)
 			const blog = await Blog.create({
 			  blogText,
 			  blogTitle,

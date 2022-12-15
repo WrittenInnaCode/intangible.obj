@@ -46,7 +46,7 @@ function Home() {
     return (
         <div>
         
-            <Container fluid>
+            
                 <Grid>
                     <Grid columns={3} stackable>
                             {objects.map((object, i) => (
@@ -56,7 +56,7 @@ function Home() {
                             ))}
                     </Grid>
                 </Grid>
-            </Container>
+           
 
 
         </div>

@@ -20,12 +20,12 @@ body {
 
 .noPadding {
     padding: 0 !important;
-    width: 100%;
+    width: 88%;
+    margin: 0 auto;
 }
 
 .homeGrid{
     padding: 0.20rem !important;
-    /* padding-top: 0 !important; */
 }
 
 .login {
@@ -75,9 +75,10 @@ display: flex;
     margin: 1rem;
 }
 
-.closeIcon{
+/* .closeIcon{
     position: absolute;
 }
 .closeIcon:hover{
     cursor: pointer;
-}
+} */
+
