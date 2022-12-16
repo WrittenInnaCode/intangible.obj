@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
@@ -7,14 +7,26 @@ import { QUERY_BLOGS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
+import { Editor } from '@tinymce/tinymce-react';
+
 import { Segment, Button, Form, TextArea, Grid, Message, Image, Icon, Divider, Header } from 'semantic-ui-react'
 
 
 const BlogForm = () => {
+
   const [blogText, setBlogText] = useState('');
   const [blogTitle, setBlogTitle] = useState('');
   const [blogImage, setBlogImage] = useState([]);
   const [imageURL, setImageURL] = useState('');
+
+  const apiKey = '4m49w4kxra2wj9gl67rbos34wxi5nanvf8g83nne9o8gp67b';
+
+  const editorRef = useRef(null);
+  const log = () => {
+    if (editorRef.current) {
+      console.log(editorRef.current.getContent());
+    }
+  };
 
 
   const [addBlog, { error }] = useMutation(ADD_BLOG, {
@@ -89,8 +101,10 @@ const BlogForm = () => {
     } else if (name === 'blogTitle') {
       setBlogTitle(value);
     };
+  };
 
-
+  const handleUpdate = (blogText, editor) => {
+    setBlogText(blogText);
   };
 
   return (
@@ -117,13 +131,42 @@ const BlogForm = () => {
                     onChange={handleChange}
                   ></input>
                   <div><br /></div>
-                  <TextArea
+                  {/* <TextArea
                     name="blogText"
                     placeholder="New blog post text"
                     value={blogText}
                     style={{ lineHeight: '1.5', resize: 'vertical' }}
                     onChange={handleChange}
-                  ></TextArea>
+                  ></TextArea> */}
+
+                    <Editor
+                      name="blogText"
+                      placeholder="New blog post text"
+                      apiKey={apiKey}
+                      value={blogText}
+                      onEditorChange={handleUpdate}
+                      onChange={handleChange}
+                      onInit={(evt, editor) => editorRef.current = editor}
+                     
+                      init={{
+                        height: 500,
+                        menubar: false,
+                        
+                        plugins: [
+                          'advlist autolink lists link image charmap print preview anchor',
+                          'searchreplace visualblocks code fullscreen',
+                          'insertdatetime media table paste code help wordcount'
+                        ],
+                        toolbar: 'undo redo | formatselect | ' +
+                        'bold italic backcolor | alignleft aligncenter ' +
+                        'alignright alignjustify | bullist numlist outdent indent | ' +
+                        'removeformat | help',
+                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                      }}
+                    />
+                 
+               
+
                 </Grid.Column>
 
                 <Grid.Column>

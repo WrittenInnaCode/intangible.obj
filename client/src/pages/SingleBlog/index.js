@@ -9,8 +9,6 @@ import CommentForm from '../../components/CommentForm';
 
 import { QUERY_SINGLE_BLOG } from '../../utils/queries';
 
-import { Button } from 'semantic-ui-react'
-
 const SingleBlog = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { blogId } = useParams();
@@ -28,7 +26,7 @@ const SingleBlog = () => {
   }
   return (
     <div >
-      <h1 style={{ fontStyle: 'italic' }}>{blog.blogTitle} </h1>
+      <h1 style={{ fontStyle: 'italic' }}>{blog.blogTitle}</h1>
 
       <img src={blog.blogImage} style={{ maxWidth: '300px', padding: '0.5rem' }} />
 
