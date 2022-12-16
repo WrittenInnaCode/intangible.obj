@@ -45,6 +45,7 @@ const typeDefs = gql`
     	addBlog(blogText: String!, blogTitle: String!, blogImage: String!): Blog
     	addComment(blogId: ID!, commentText: String!): Blog
     	removeBlog(blogId: ID!): Blog
+		editBlog(blogId: ID!, blogText: String!, blogTitle: String!, blogImage: String!): Blog
     	removeComment(blogId: ID!, commentId: ID!): Blog
 	}
 `;

@@ -58,6 +58,17 @@ export const REMOVE_BLOG = gql`
   }
 `;
 
+export const EDIT_BLOG = gql`
+  mutation editBlog($blogId: ID!, $blogText: String!, $blogTitle: String!, $blogImage: String!) {
+    editBlog(blogId: $blogId, blogText: $blogText, blogTitle: $blogTitle, blogImage: $blogImage) {
+      _id
+      blogText
+      blogTitle
+      blogImage
+    }
+  }
+`;
+
 export const ADD_COMMENT = gql`
   mutation addComment($blogId: ID!, $commentText: String!) {
     addComment(blogId: $blogId, commentText: $commentText) {

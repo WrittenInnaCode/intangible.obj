@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 import { ADD_BLOG } from '../../utils/mutations';
@@ -12,12 +12,14 @@ import { Editor } from '@tinymce/tinymce-react';
 import { Segment, Button, Form, TextArea, Grid, Message, Image, Icon, Divider, Header } from 'semantic-ui-react'
 
 
-const BlogForm = () => {
+const BlogForm = ({blogItem = {}, edit, blogId, refetch}) => {
 
-  const [blogText, setBlogText] = useState('');
-  const [blogTitle, setBlogTitle] = useState('');
+  let navigate = useNavigate();
+
+  const [blogText, setBlogText] = useState(blogItem.blogText || '');
+  const [blogTitle, setBlogTitle] = useState(blogItem.blogTitle ||'');
   const [blogImage, setBlogImage] = useState([]);
-  const [imageURL, setImageURL] = useState('');
+  const [imageURL, setImageURL] = useState(blogItem.blogImage || '');
 
   const apiKey = '4m49w4kxra2wj9gl67rbos34wxi5nanvf8g83nne9o8gp67b';
 
@@ -75,19 +77,33 @@ const BlogForm = () => {
     event.preventDefault();
     // console.log("url ", blogImage.url)
     try {
-      const { data } = await addBlog({
-        variables: {
-          blogText,
-          blogTitle,
-          // blogImage: blogImage.url,
-          blogImage: imageURL,
-          blogAuthor: Auth.getProfile().data.username,
-        },
-      });
-
-      setBlogText('');
-      setBlogTitle('');
-      window.location.reload();
+      if (edit){
+        const { data } = await edit({
+          variables: {
+            blogId,
+            blogText,
+            blogTitle,
+            blogImage: imageURL,
+          },
+        });
+        navigate("/me")
+      } else {
+        const { data } = await addBlog({
+          variables: {
+            blogText,
+            blogTitle,
+            // blogImage: blogImage.url,
+            blogImage: imageURL,
+            blogAuthor: Auth.getProfile().data.username,
+          },
+        });
+  
+        setBlogText('');
+        setBlogTitle('');
+        
+        refetch();
+        window.location.reload();
+      }
     } catch (err) {
       console.error(err);
     };
@@ -109,12 +125,6 @@ const BlogForm = () => {
 
   return (
     <div>
-
-      <Divider horizontal style={{ marginTop: '3rem', marginBottom: '3rem' }}>
-        <Header as='h3'>
-          Create a new blog post
-        </Header>
-      </Divider>
 
       {Auth.loggedIn() ? (
         <>
@@ -149,18 +159,18 @@ const BlogForm = () => {
                       onInit={(evt, editor) => editorRef.current = editor}
                      
                       init={{
-                        height: 500,
+                        height: 300,
                         menubar: false,
                         
                         plugins: [
-                          'advlist autolink lists link image charmap print preview anchor',
-                          'searchreplace visualblocks code fullscreen',
-                          'insertdatetime media table paste code help wordcount'
+                          'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                          'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                          'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
                         ],
-                        toolbar: 'undo redo | formatselect | ' +
-                        'bold italic backcolor | alignleft aligncenter ' +
-                        'alignright alignjustify | bullist numlist outdent indent | ' +
-                        'removeformat | help',
+                        toolbar: 'undo redo | blocks | ' +
+                          'bold italic forecolor | alignleft aligncenter ' +
+                          'alignright alignjustify | bullist numlist outdent indent | ' +
+                          'removeformat | help',
                         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
                       }}
                     />
@@ -198,7 +208,7 @@ const BlogForm = () => {
 
               <Segment secondary>
                 <Button type="submit" basic color='violet'><Icon disabled name='check' />
-                  Add a Blog Post
+                 {edit ? "Update" : "Add"} a Blog Post
                 </Button>
               </Segment>
 

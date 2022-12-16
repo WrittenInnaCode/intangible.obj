@@ -18,7 +18,7 @@ const Profile = () => {
 
   const { username: userParam } = useParams();
 
-  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+  const { loading, data, refetch } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
 
@@ -31,7 +31,8 @@ const Profile = () => {
     const { data } = await removeBlog({
       variables: { blogId },
     });
-    window.location.reload()
+    refetch();
+    
   }
 
 
@@ -42,7 +43,13 @@ const Profile = () => {
 
       <h1 style={{ marginBottom: '3rem' }}>Admin's Page</h1>
 
-      <BlogForm />
+      <Divider horizontal style={{ marginTop: '3rem', marginBottom: '3rem' }}>
+        <Header as='h3'>
+          Create  New Blog Post
+        </Header>
+      </Divider>
+
+      <BlogForm refetch={refetch}/>
 
       <Divider horizontal style={{ paddingTop: '6rem', marginBottom: '4rem' }}>
         <Header as='h3'>Your Blog Posts</Header>
@@ -63,13 +70,21 @@ const Profile = () => {
                 <Card.Meta>{blog.createdAt}</Card.Meta>
 
                 <Link to={`/blogs/${blog._id}`}>
-                <Image src={blog.blogImage} />
-                {/* <p style={{ fontSize: '20px', paddingBottom: '0.5rem' }}>{blog.blogText}</p> */}
+                  <Image src={blog.blogImage} />
+                  {/* <p style={{ fontSize: '20px', paddingBottom: '0.5rem' }}>{blog.blogText}</p> */}
                 </Link>
+                <div>
+                  <Button.Group >
+                    <Button basic color='red' size='mini' type="click" onClick={() => handleOnClick(blog._id)} >Delete</Button>
+                    {/* <Button.Or /> */}
 
-                <Button inverted color='red' size='mini' type="click" onClick={() => handleOnClick(blog._id)} >Delete</Button>
-                {/* <Button>Edit</Button> */}
+                    <Link to={`/blogs/${blog._id}/editblog`}>
+                      <Button basic color='green'>Edit</Button>
+                    </Link>
+                  </Button.Group>
 
+
+                </div>
               </Card>
 
             </Grid.Column>

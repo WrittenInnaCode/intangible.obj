@@ -3,7 +3,7 @@ import { Container, Row, Column, Grid, Image } from 'semantic-ui-react'
 
 function Object({ object }) {
 
-    const { name, description, deployedLink, image } = object;
+    const { name, description, objLink, image } = object;
 
     return (
         <div>
@@ -17,7 +17,7 @@ function Object({ object }) {
                     <div className="portfolio-caps">
                         <div className="portfolio-content gradient-text text-center">
 
-                            <a href={deployedLink} target="_blank" rel="noreferrer">{name}</a>
+                            <a href={objLink} target="_blank" rel="noreferrer">{name}</a>
                             
                             <p className="fs-6">{description}</p>
 

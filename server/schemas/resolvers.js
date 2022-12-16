@@ -28,15 +28,6 @@ const resolvers = {
 		}
 	},
 
-	// Mutation: {
-	// 	addUser: async (_, args) => {
-	// 		const user = await User.create(args);
-	// 		const token = signToken(user);
-
-	// 		return { token, user };
-	// 	}
-	// },
-
 	Mutation: {
 		addUser: async (parent, { username, email, password }) => {
 		  const user = await User.create({ username, email, password });
@@ -116,6 +107,18 @@ const resolvers = {
 		  }
 		  throw new AuthenticationError('You need to be logged in!');
 		},
+
+		editBlog: async (parent, { blogId, blogText, blogTitle, blogImage }, context) => {
+			if (context.user) {
+			  const blog = await Blog.findByIdAndUpdate(blogId, {$set: {
+				blogTitle,
+			    blogText,
+			    blogImage,
+			  }});
+			  return blog;
+			}
+			throw new AuthenticationError('You need to be logged in!');
+		  },
 		
 		removeComment: async (parent, { blogId, commentId }, context) => {
 		  if (context.user) {

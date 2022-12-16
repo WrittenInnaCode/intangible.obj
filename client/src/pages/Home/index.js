@@ -7,37 +7,37 @@ function Home() {
         {
             name: "Name of object 1",
             description: "Description",
-            deployedLink: " ",
+            objLink: " ",
             image: "image.png"
         },
         {
             name: "Name of object 2",
             description: "Description",
-            deployedLink: " ",
+            objLink: " ",
             image: "image.png"
         },
         {
             name: "Name of object 3",
             description: "Description",
-            deployedLink: " ",
+            objLink: " ",
             image: "image.png"
         },
         {
             name: "Name of object 4",
             description: "Description",
-            deployedLink: " ",
+            objLink: " ",
             image: "image.png"
         },
         {
             name: "Name of object 5",
             description: "Description",
-            deployedLink: " ",
+            objLink: " ",
             image: "image.png"
         },
         {
             name: "Name of object 6",
             description: "Description",
-            deployedLink: " ",
+            objLink: " ",
             image: "image.png"
         },
     ])

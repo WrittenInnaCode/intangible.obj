@@ -25,6 +25,7 @@ import Contact from './pages/Contact';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import SingleBlog from './pages/SingleBlog';
+import EditBlog from './pages/EditBlog';
 import Profile from './pages/Profile';
 
 const httpLink = createHttpLink({
@@ -98,6 +99,10 @@ function App() {
                   <Route
                     path="/blogs/:blogId"
                     element={<SingleBlog />}
+                  />
+                  <Route
+                    path="/blogs/:blogId/editblog"
+                    element={<EditBlog />}
                   />
                   <Route
                     path="/about"

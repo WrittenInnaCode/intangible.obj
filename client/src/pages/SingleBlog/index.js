@@ -9,6 +9,8 @@ import CommentForm from '../../components/CommentForm';
 
 import { QUERY_SINGLE_BLOG } from '../../utils/queries';
 
+import { Segment, Button, Form, Grid, Message, Image, Icon, Divider, Header } from 'semantic-ui-react'
+
 const SingleBlog = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { blogId } = useParams();
@@ -28,10 +30,10 @@ const SingleBlog = () => {
     <div >
       <h1 style={{ fontStyle: 'italic' }}>{blog.blogTitle}</h1>
 
-      <img src={blog.blogImage} style={{ maxWidth: '300px', padding: '0.5rem' }} />
+      <Image src={blog.blogImage} style={{ maxWidth: '500px', marginBottom: '4rem', marginTop: '4rem' }} centered />
 
       <div >
-        <blockquote
+        {/* <blockquote
           style={{
             fontSize: '1.5rem',
             border: '2px',
@@ -39,10 +41,15 @@ const SingleBlog = () => {
           }}
         >
           {blog.blogText}
-        </blockquote>
-
-
+        </blockquote> */}
       </div>
+
+      <div style={{
+            fontSize: '1.5rem',
+            border: '2px',
+            lineHeight: '1.5',
+          }} 
+          dangerouslySetInnerHTML={{ __html:blog.blogText}} />
 
       <h3 style={{ fontSize: '1rem', paddingBottom: '2rem' }}>
         {blog.blogAuthor} {''}
@@ -50,6 +57,10 @@ const SingleBlog = () => {
       </h3>
 
       <br />
+
+      <Divider horizontal style={{ marginTop: '3rem', marginBottom: '3rem' }}>
+        <Header as='h3'> Comments </Header>
+      </Divider>
 
       <div>
         <CommentList comments={blog.comments} />
