@@ -6,6 +6,8 @@ import { ADD_USER } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
+import { Segment, Button, Form } from 'semantic-ui-react'
+
 const Signup = () => {
   const [formState, setFormState] = useState({
     username: '',
@@ -39,19 +41,23 @@ const Signup = () => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
-          <div className="card-body">
-            {data ? (
-              <p>
-                Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
-              </p>
-            ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
+    <>
+      <h4>Sign Up</h4>
+
+      <div>
+
+        {data ? (
+          <p>
+            Success! You may now head{' '}
+            <Link to="/">back to the homepage.</Link>
+          </p>
+        ) : (
+
+          <Segment >
+            <Form onSubmit={handleFormSubmit}>
+              <Form.Field>
+
+                <input required
                   className="form-input"
                   placeholder="Your username"
                   name="username"
@@ -59,7 +65,11 @@ const Signup = () => {
                   value={formState.name}
                   onChange={handleChange}
                 />
-                <input
+              </Form.Field>
+
+              <Form.Field>
+
+                <input required
                   className="form-input"
                   placeholder="Your email"
                   name="email"
@@ -67,7 +77,11 @@ const Signup = () => {
                   value={formState.email}
                   onChange={handleChange}
                 />
-                <input
+              </Form.Field>
+
+
+              <Form.Field>
+                <input required
                   className="form-input"
                   placeholder="******"
                   name="password"
@@ -75,25 +89,28 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
-                <button
-                  className="btn btn-block btn-primary"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Submit
-                </button>
-              </form>
-            )}
+              </Form.Field>
 
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
+              <Button
+                className="btn btn-block btn-primary"
+                style={{ cursor: 'pointer' }}
+                type="submit"
+              >
+                Submit
+              </Button>
+            </Form>
+          </Segment>
+        )}
+
+        {error && (
+          <div> 
+            {error.message}
           </div>
-        </div>
+        )}
       </div>
-    </main>
+
+
+    </>
   );
 };
 

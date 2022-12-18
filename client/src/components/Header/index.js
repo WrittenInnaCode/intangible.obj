@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Divider, Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 import Auth from '../../utils/auth';
 
@@ -34,15 +34,13 @@ const Header = () => {
                 Login
               </Link>
 
-              {/* <Link to="/signup">
-                Signup
-              </Link> */}
+
             </>
           )}
         </div>
 
       </header>
-      {/* <Divider /> */}
+      
 
     </div>
   );

@@ -87,7 +87,8 @@ const BlogForm = ({ blogItem = {}, edit, blogId, refetch }) => {
           },
         });
         // navigate("/blog")
-        navigate("/me")
+        // navigate("/me")
+        window.location.assign('/me');
 
       } else {
         const { data } = await addBlog({
