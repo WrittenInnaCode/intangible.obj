@@ -78,3 +78,8 @@ body {
     border: 2px solid rgb(253, 219, 255); 
     border-radius: 5px;
 } */
+
+.cardHeader{
+    display: flex;
+    flex-direction: column;
+}

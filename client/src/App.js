@@ -97,11 +97,11 @@ function App() {
                     element={<Profile />}
                   />
                   <Route
-                    path="/blogs/:blogId"
+                    path="/blog/:blogId"
                     element={<SingleBlog />}
                   />
                   <Route
-                    path="/blogs/:blogId/editblog"
+                    path="/blog/:blogId/editblog"
                     element={<EditBlog />}
                   />
                   <Route

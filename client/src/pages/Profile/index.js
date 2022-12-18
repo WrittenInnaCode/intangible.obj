@@ -6,10 +6,12 @@ import { Link } from 'react-router-dom';
 
 import BlogForm from '../../components/BlogForm';
 
+import Login from '../Login';
+
 import { QUERY_USER, QUERY_ME } from '../../utils/queries';
 import { REMOVE_BLOG } from '../../utils/mutations';
 
-import { Card, Button, Divider, Header, Grid, Image, Segment } from 'semantic-ui-react'
+import { Card, Button, Divider, Header, Grid, Image, Menu, Dropdown } from 'semantic-ui-react'
 
 import Auth from '../../utils/auth';
 
@@ -32,7 +34,7 @@ const Profile = () => {
       variables: { blogId },
     });
     refetch();
-    
+
   }
 
 
@@ -49,7 +51,7 @@ const Profile = () => {
         </Header>
       </Divider>
 
-      <BlogForm refetch={refetch}/>
+      <BlogForm refetch={refetch} />
 
       <Divider horizontal style={{ paddingTop: '6rem', marginBottom: '4rem' }}>
         <Header as='h3'>Your Blog Posts</Header>
@@ -63,28 +65,27 @@ const Profile = () => {
 
               <Card key={blog._id} style={{ marginBottom: '4rem' }}>
 
-                <Link to={`/blogs/${blog._id}`}>
-                  <h2>{blog.blogTitle}</h2>
-                </Link>
+                <Menu attached='top' >
+                  <Link to={`/blog/${blog._id}`}><h2>{blog.blogTitle}</h2></Link>
+
+                  <Menu.Menu position='right'>
+                    <Dropdown item icon='wrench' simple >
+                      <Dropdown.Menu >
+
+                        <Dropdown.Item icon='edit' text='Edit' href={`/blog/${blog._id}/editblog`} />
+
+                        <Dropdown.Item icon='trash' text='Delete' type="click" onClick={() => handleOnClick(blog._id)} />
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </Menu.Menu>
+                </Menu>
 
                 <Card.Meta>{blog.createdAt}</Card.Meta>
 
-                <Link to={`/blogs/${blog._id}`}>
+                <Link to={`/blog/${blog._id}`}>
                   <Image src={blog.blogImage} />
-                  {/* <p style={{ fontSize: '20px', paddingBottom: '0.5rem' }}>{blog.blogText}</p> */}
                 </Link>
-                <div>
-                  <Button.Group >
-                    <Button basic color='red' size='mini' type="click" onClick={() => handleOnClick(blog._id)} >Delete</Button>
-                    {/* <Button.Or /> */}
 
-                    <Link to={`/blogs/${blog._id}/editblog`}>
-                      <Button basic color='green'>Edit</Button>
-                    </Link>
-                  </Button.Group>
-
-
-                </div>
               </Card>
 
             </Grid.Column>
@@ -103,10 +104,10 @@ const Profile = () => {
 
   if (!user?.username) {
     return (
-      <h4>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h4>
+      <div>
+        <h4>You need to be logged in to see this.</h4>
+        <Login />
+      </div>
     );
   }
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 import { ADD_BLOG } from '../../utils/mutations';
@@ -12,12 +12,12 @@ import { Editor } from '@tinymce/tinymce-react';
 import { Segment, Button, Form, TextArea, Grid, Message, Image, Icon, Divider, Header } from 'semantic-ui-react'
 
 
-const BlogForm = ({blogItem = {}, edit, blogId, refetch}) => {
+const BlogForm = ({ blogItem = {}, edit, blogId, refetch }) => {
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [blogText, setBlogText] = useState(blogItem.blogText || '');
-  const [blogTitle, setBlogTitle] = useState(blogItem.blogTitle ||'');
+  const [blogTitle, setBlogTitle] = useState(blogItem.blogTitle || '');
   const [blogImage, setBlogImage] = useState([]);
   const [imageURL, setImageURL] = useState(blogItem.blogImage || '');
 
@@ -75,9 +75,9 @@ const BlogForm = ({blogItem = {}, edit, blogId, refetch}) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    // console.log("url ", blogImage.url)
+
     try {
-      if (edit){
+      if (edit) {
         const { data } = await edit({
           variables: {
             blogId,
@@ -86,7 +86,9 @@ const BlogForm = ({blogItem = {}, edit, blogId, refetch}) => {
             blogImage: imageURL,
           },
         });
+        // navigate("/blog")
         navigate("/me")
+
       } else {
         const { data } = await addBlog({
           variables: {
@@ -97,10 +99,10 @@ const BlogForm = ({blogItem = {}, edit, blogId, refetch}) => {
             blogAuthor: Auth.getProfile().data.username,
           },
         });
-  
+
         setBlogText('');
         setBlogTitle('');
-        
+
         refetch();
         window.location.reload();
       }
@@ -149,40 +151,40 @@ const BlogForm = ({blogItem = {}, edit, blogId, refetch}) => {
                     onChange={handleChange}
                   ></TextArea> */}
 
-                    <Editor
-                      name="blogText"
-                      placeholder="New blog post text"
-                      apiKey={apiKey}
-                      value={blogText}
-                      onEditorChange={handleUpdate}
-                      onChange={handleChange}
-                      onInit={(evt, editor) => editorRef.current = editor}
-                     
-                      init={{
-                        height: 300,
-                        menubar: false,
-                        
-                        plugins: [
-                          'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-                          'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                          'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
-                        ],
-                        toolbar: 'undo redo | blocks | ' +
-                          'bold italic forecolor | alignleft aligncenter ' +
-                          'alignright alignjustify | bullist numlist outdent indent | ' +
-                          'removeformat | help',
-                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-                      }}
-                    />
-                 
-               
+                  <Editor
+                    name="blogText"
+                    placeholder="New blog post text"
+                    apiKey={apiKey}
+                    value={blogText}
+                    onEditorChange={handleUpdate}
+                    onChange={handleChange}
+                    onInit={(evt, editor) => editorRef.current = editor}
+
+                    init={{
+                      height: 300,
+                      menubar: false,
+
+                      plugins: [
+                        'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                        'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                        'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+                      ],
+                      toolbar: 'undo redo | blocks | ' +
+                        'bold italic forecolor | alignleft aligncenter ' +
+                        'alignright alignjustify | bullist numlist outdent indent | ' +
+                        'removeformat | help',
+                      content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                    }}
+                  />
+
+
 
                 </Grid.Column>
 
                 <Grid.Column>
 
                   <br />
-                  <Button onClick={handleOpenWidget} basic color='blue'><Icon disabled name='images' />Upload Picture</Button>
+                  <Button onClick={handleOpenWidget} basic color='blue'><Icon name='images' />Upload Picture</Button>
 
 
                   <div className='imgPreview-container'>
@@ -207,14 +209,22 @@ const BlogForm = ({blogItem = {}, edit, blogId, refetch}) => {
 
 
               <Segment secondary>
-                <Button type="submit" basic color='violet'><Icon disabled name='check' />
-                 {edit ? "Update" : "Add"} a Blog Post
+
+
+                {/* <Button type="submit" basic color='pink' ><Icon name='cancel' />
+                  Cancel
+                </Button> */}
+
+                <Button type="submit" basic color='teal'><Icon name='check' />
+                  {edit ? "Update" : "Add"} a Blog Post
                 </Button>
+
               </Segment>
 
             </Segment.Group>
 
           </Form>
+
 
           {error && (
             <Message warning attached='bottom'>

@@ -1,34 +1,35 @@
 import React from 'react';
 
+import { Label, Icon, Comment } from 'semantic-ui-react'
+
 const CommentList = ({ comments = [] }) => {
   if (!comments.length) {
-    return <h3>No Comments Yet</h3>;
+    return <h3>No Comments Yet!</h3>;
   }
 
   return (
     <>
-      <h3
-        className="p-5 display-inline-block"
-        style={{ borderBottom: '1px dotted #1a1a1a' }}
-      >
-        Comments
-      </h3>
-      <div>
-        {comments &&
-          comments.map((comment) => (
-            <div key={comment._id} >
-              
-                <h5 className="card-header">
-                  {comment.commentAuthor} commented{' '}
-                  <span style={{ fontSize: '0.825rem' }}>
-                    on {comment.createdAt}
-                  </span>
-                </h5>
-                <p>{comment.commentText}</p>
-              
-            </div>
-          ))}
-      </div>
+
+      {comments &&
+        comments.map((comment) => (
+          <div key={comment._id} >
+            <Comment.Group>
+              <Comment style={{ marginTop: '1rem', marginBottom: '2rem' }}>
+                <Comment.Avatar as='a'
+                  src={require('../../assets/images/icon-comment.png')}
+                />
+                <Comment.Content>
+                  <Comment.Author as='a' style={{ cursor: 'default' }}>{comment.commentAuthor}</Comment.Author>
+                  <Comment.Metadata>
+                    <div>{comment.createdAt}</div>
+                  </Comment.Metadata>
+                  <Comment.Text>{comment.commentText}</Comment.Text>
+                </Comment.Content>
+              </Comment>
+            </Comment.Group>
+          </div>
+        ))}
+
     </>
   );
 };

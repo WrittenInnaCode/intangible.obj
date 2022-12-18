@@ -39,11 +39,11 @@ function Contact() {
 
 	return (
 		<div>
-			<h3>
-				Are you interested in a specific artwork or do you want to discuss a custom piece?
-			</h3>
-			<p>
-				Please complete the form below
+			<h2 style={{ marginTop:"2rem" }}>
+				Are you interested in a specific object or do you want to discuss a custom piece?
+			</h2>
+			<p style={{ fontSize:"1.2rem" }}>
+				Please complete the form below or email me directly at <a href='mailto:writteninnacode@gmail.com'>writteninnacode@gmail.com</a>.
 			</p>
 			<br />
 
@@ -61,7 +61,7 @@ function Contact() {
 				</div>
 				<br />
 				<div className="send-button">
-					<Button color='pink' type="submit" value="send" id="send-email">Submit</Button>
+					<Button color='pink' type="submit" value="send" id="send-email">Send</Button>
 				</div>
 
 				<br />

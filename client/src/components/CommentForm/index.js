@@ -6,7 +6,7 @@ import { ADD_COMMENT } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-import { Button, Form, TextArea, Grid } from 'semantic-ui-react'
+import { Button, Form, TextArea, Grid, Divider, Header } from 'semantic-ui-react'
 
 
 const CommentForm = ({ blogId }) => {
@@ -42,7 +42,10 @@ const CommentForm = ({ blogId }) => {
 
   return (
     <div>
-      <h4>Leave a comment</h4>
+      {/* <h4>Leave a comment</h4> */}
+      <Divider horizontal style={{ marginTop: '3rem', marginBottom: '2rem' }}>
+        <Header as='h3'> Leave a Comment </Header>
+      </Divider>
 
       {Auth.loggedIn() ? (
         <>

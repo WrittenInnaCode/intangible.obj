@@ -9,7 +9,7 @@ import CommentForm from '../../components/CommentForm';
 
 import { QUERY_SINGLE_BLOG } from '../../utils/queries';
 
-import { Segment, Button, Form, Grid, Message, Image, Icon, Divider, Header } from 'semantic-ui-react'
+import {  Image, Divider, Header } from 'semantic-ui-react'
 
 const SingleBlog = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`

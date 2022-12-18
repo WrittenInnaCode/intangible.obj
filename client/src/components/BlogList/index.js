@@ -27,11 +27,11 @@ const BlogList = ({
 
           <Divider style={{ marginTop: '3rem', marginBottom: '5rem' }} />
 
-          <Link to={`/blogs/${blog._id}`}>
+          <Link to={`/blog/${blog._id}`}>
             <h2 style={{ marginBottom: '2rem' }}>{blog.blogTitle}</h2>
           </Link>
 
-          <Link to={`/blogs/${blog._id}`}>
+          <Link to={`/blog/${blog._id}`}>
             <Image src={blog.blogImage} style={{ maxWidth: '500px', maxHeight: '400px' }} />
           </Link>
 
@@ -43,7 +43,7 @@ const BlogList = ({
 
           {/* <p style={{ fontSize: '20px', paddingBottom: '0.5rem' }}>{blog.blogText}</p> */}
 
-          <Link to={`/blogs/${blog._id}`}>
+          <Link to={`/blog/${blog._id}`}>
             Comment on this blog post.
           </Link>
 
