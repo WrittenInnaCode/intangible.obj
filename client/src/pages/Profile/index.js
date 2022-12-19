@@ -11,7 +11,7 @@ import Login from '../Login';
 import { QUERY_USER, QUERY_ME } from '../../utils/queries';
 import { REMOVE_BLOG } from '../../utils/mutations';
 
-import { Card, Button, Divider, Header, Grid, Image, Menu, Dropdown } from 'semantic-ui-react'
+import { Card, Divider, Header, Grid, Image, Menu, Dropdown } from 'semantic-ui-react'
 
 import Auth from '../../utils/auth';
 
@@ -39,7 +39,7 @@ const Profile = () => {
 
 
   // navigate to personal profile page if you are the admin
-  if (Auth.loggedIn() && Auth.getProfile().data.username === "writteninnacode") {
+  if (Auth.loggedIn() && Auth.getProfile().data.username === "writteninnacode" || "admin_user") {
 
     return <div>
 

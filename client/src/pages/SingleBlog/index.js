@@ -2,7 +2,7 @@ import React from 'react';
 
 // Import the `useParams()` hook
 import { useParams } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 
 import CommentList from '../../components/CommentList';
 import CommentForm from '../../components/CommentForm';
@@ -32,18 +32,7 @@ const SingleBlog = () => {
 
       <Image src={blog.blogImage} style={{ maxWidth: '500px', marginBottom: '4rem', marginTop: '4rem' }} centered />
 
-      <div >
-        {/* <blockquote
-          style={{
-            fontSize: '1.5rem',
-            border: '2px',
-            lineHeight: '1.5',
-          }}
-        >
-          {blog.blogText}
-        </blockquote> */}
-      </div>
-
+     
       <div style={{
             fontSize: '1.5rem',
             border: '2px',

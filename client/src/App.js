@@ -15,7 +15,7 @@ import { Grid, Container } from 'semantic-ui-react'
 
 import Navbar from './components/Navbar';
 import Header from './components/Header';
-// import Footer from './components/Footer';
+import Footer from './components/Footer';
 
 import Home from './pages/Home';
 import Blog from './pages/Blog';
@@ -53,10 +53,10 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <>
+        <div className='app'>
           <Header />
 
-          <Grid stackable className='grid'>
+          <Grid stackable className='mainGrid'>
 
             <Grid.Column width={2}>
               <Navbar />
@@ -119,7 +119,9 @@ function App() {
 
           </Grid>
 
-        </>
+          <Footer />
+          
+        </div>
       </Router>
     </ApolloProvider>
   );

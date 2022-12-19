@@ -9,7 +9,7 @@ import Auth from '../../utils/auth';
 
 import { Editor } from '@tinymce/tinymce-react';
 
-import { Segment, Button, Form, TextArea, Grid, Message, Image, Icon, Divider, Header } from 'semantic-ui-react'
+import { Segment, Button, Form, Grid, Message, Image, Icon} from 'semantic-ui-react'
 
 
 const BlogForm = ({ blogItem = {}, edit, blogId, refetch }) => {

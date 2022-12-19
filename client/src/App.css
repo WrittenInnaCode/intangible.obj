@@ -7,6 +7,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-width: 100% !important;
+  height: 100% !important;
 }
 
 .header {
@@ -87,3 +89,19 @@ body {
 .portfolio-box:hover{
 cursor: pointer;
 }
+
+.app {
+    display: flex;
+    flex-flow: column nowrap;
+    min-height: 100vh; 
+  }
+  
+.footer{
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    }
+
+    .mainGrid{
+        flex-grow: 1;
+    }

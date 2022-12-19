@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Label, Icon, Comment } from 'semantic-ui-react'
+import { Comment } from 'semantic-ui-react'
 
 const CommentList = ({ comments = [] }) => {
   if (!comments.length) {
