@@ -83,3 +83,7 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+.portfolio-box:hover{
+cursor: pointer;
+}

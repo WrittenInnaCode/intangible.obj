@@ -11,7 +11,7 @@ export default class MenuVerticalSecondary extends Component {
 		const { activeItem } = this.state
 
 		return (
-
+<div>
 			<Menu pointing secondary vertical >
 
 				<Link to="/">
@@ -26,14 +26,6 @@ export default class MenuVerticalSecondary extends Component {
 					<Menu.Item
 						name='blog'
 						active={activeItem === 'blog'}
-						onClick={this.handleItemClick}
-					/>
-				</Link>
-
-				<Link to="/events">
-					<Menu.Item
-						name='events'
-						active={activeItem === 'events'}
 						onClick={this.handleItemClick}
 					/>
 				</Link>
@@ -56,7 +48,7 @@ export default class MenuVerticalSecondary extends Component {
 
 			</Menu>
 
-
+</div>
 		)
 	}
 }

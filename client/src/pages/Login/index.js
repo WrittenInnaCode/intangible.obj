@@ -104,7 +104,7 @@ const Login = (props) => {
             </Grid.Column>
 
             <Grid.Column verticalAlign='middle'>
-              <Link to="/signup"><Button content='Sign up' icon='signup' size='big' /></Link>
+              <Link to="/signup"><Button content='Sign up' icon='signup' /></Link>
             </Grid.Column>
 
           </Grid>

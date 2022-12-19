@@ -19,7 +19,6 @@ import Header from './components/Header';
 
 import Home from './pages/Home';
 import Blog from './pages/Blog';
-import Events from './pages/Events';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Signup from './pages/Signup';
@@ -59,12 +58,12 @@ function App() {
 
           <Grid stackable className='grid'>
 
-            <Grid.Column width={4}>
+            <Grid.Column width={2}>
               <Navbar />
             </Grid.Column>
 
 
-            <Grid.Column centered  width={10} className="noPadding">
+            <Grid.Column width={10} className="noPadding">
               
               <Container >
                 <Routes>
@@ -75,10 +74,6 @@ function App() {
                   <Route
                     path="/blog"
                     element={<Blog />}
-                  />
-                  <Route
-                    path="/events"
-                    element={<Events />}
                   />
                   <Route
                     path="/login"
