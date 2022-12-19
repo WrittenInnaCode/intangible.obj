@@ -26,65 +26,42 @@ function Object({ object }) {
 
                         <Modal.Content image>
 
-                            <Grid stackable>
-                                <Grid.Row>
-                                    <Grid.Column width={12}>
-                                        <Modal.Description wrapped>
-                                            <Image fluid
-                                                src={require(`../../assets/images/${image}`)}
-                                                style={{ marginBottom: 10 }}
-                                            />
-                                            <Image fluid
-                                                src={require(`../../assets/images/${image1}`)}
-                                                style={{ marginBottom: 10 }}
-                                            />
-                                            <Image fluid
-                                                src={require(`../../assets/images/${image2}`)}
-                                                style={{ marginBottom: 10 }}
-                                            />
-                                            <Image 
-                                                src={require(`../../assets/images/${image3}`)}
-                                                style={{ marginBottom: 10 }}
-                                            />
-                                            <Image 
-                                                src={require(`../../assets/images/${image4}`)}
-                                                style={{ marginBottom: 10 }}
-                                            />
-                                            
-                                            
-                                        </Modal.Description>
-                                        
+                            <Segment>
+                                <h3 style={{textAlign: 'center'}}>{description}</h3>
 
-                                    </Grid.Column>
+                                <Modal.Description wrapped>
+                                    <Image fluid
+                                        src={require(`../../assets/images/${image}`)}
+                                        style={{ marginBottom: 10 }}
+                                    />
+                                    <Image fluid
+                                        src={require(`../../assets/images/${image1}`)}
+                                        style={{ marginBottom: 10 }}
+                                    />
+                                    <Image fluid
+                                        src={require(`../../assets/images/${image2}`)}
+                                        style={{ marginBottom: 10 }}
+                                    />
+                                    <Image
+                                        src={require(`../../assets/images/${image3}`)}
+                                        style={{ marginBottom: 10 }}
+                                    />
+                                    <Image
+                                        src={require(`../../assets/images/${image4}`)}
+                                        style={{ marginBottom: 10 }}
+                                    />
 
-                                    <Grid.Column width={3} textAlign='right'>
-                                        
-                                        {/* <Segment> */}
-                                            {/* <Rail> */}
-                                                {/* <Sticky > */}
-                                        <p>{description}</p>
-                                        {/* </Sticky> */}
-                                        {/* </Rail> */}
-                                        {/* </Segment> */}
-                                      
-                                    </Grid.Column>
 
-                                </Grid.Row>
-                            </Grid>
+                                </Modal.Description>
+                            </Segment>
+
+
 
                         </Modal.Content>
 
                     </Modal>
 
-                    {/* <div className="portfolio-caps">
-                        <div className="portfolio-content gradient-text text-center">
 
-                            <a href={objLink} target="_blank" rel="noreferrer">{name}</a>
-
-                            <p className="fs-6">{description}</p>
-
-                        </div>
-                    </div> */}
                 </div>
             </div>
 
