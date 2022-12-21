@@ -32,7 +32,7 @@ const BlogList = ({
           </Link>
 
           <Link to={`/blog/${blog._id}`}>
-            <Image src={blog.blogImage} style={{ maxWidth: '500px', maxHeight: '400px' }} />
+            <Image fluid src={blog.blogImage} style={{ maxWidth: '600px', maxHeight: '600px' }} />
           </Link>
 
           <br />
@@ -40,8 +40,6 @@ const BlogList = ({
           <Card.Meta>
             <p>Posted on {blog.createdAt}</p>
           </Card.Meta>
-
-          {/* <p style={{ fontSize: '20px', paddingBottom: '0.5rem' }}>{blog.blogText}</p> */}
 
           <Link to={`/blog/${blog._id}`}>
             Comment on this blog post.

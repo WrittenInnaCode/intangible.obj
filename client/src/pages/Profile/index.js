@@ -83,7 +83,7 @@ const Profile = () => {
                 <Card.Meta>{blog.createdAt}</Card.Meta>
 
                 <Link to={`/blog/${blog._id}`}>
-                  <Image src={blog.blogImage} />
+                  <Image centered src={blog.blogImage} style={{maxHeight: '280px' }}/>
                 </Link>
 
               </Card>

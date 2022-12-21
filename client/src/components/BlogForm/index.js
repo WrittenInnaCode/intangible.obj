@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 import { ADD_BLOG } from '../../utils/mutations';
@@ -86,8 +86,6 @@ const BlogForm = ({ blogItem = {}, edit, blogId, refetch }) => {
             blogImage: imageURL,
           },
         });
-        // navigate("/blog")
-        // navigate("/me")
         window.location.assign('/me');
 
       } else {
@@ -95,7 +93,6 @@ const BlogForm = ({ blogItem = {}, edit, blogId, refetch }) => {
           variables: {
             blogText,
             blogTitle,
-            // blogImage: blogImage.url,
             blogImage: imageURL,
             blogAuthor: Auth.getProfile().data.username,
           },
@@ -144,13 +141,6 @@ const BlogForm = ({ blogItem = {}, edit, blogId, refetch }) => {
                     onChange={handleChange}
                   ></input>
                   <div><br /></div>
-                  {/* <TextArea
-                    name="blogText"
-                    placeholder="New blog post text"
-                    value={blogText}
-                    style={{ lineHeight: '1.5', resize: 'vertical' }}
-                    onChange={handleChange}
-                  ></TextArea> */}
 
                   <Editor
                     name="blogText"
@@ -177,8 +167,6 @@ const BlogForm = ({ blogItem = {}, edit, blogId, refetch }) => {
                       content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
                     }}
                   />
-
-
 
                 </Grid.Column>
 
@@ -210,11 +198,6 @@ const BlogForm = ({ blogItem = {}, edit, blogId, refetch }) => {
 
 
               <Segment secondary>
-
-
-                {/* <Button type="submit" basic color='pink' ><Icon name='cancel' />
-                  Cancel
-                </Button> */}
 
                 <Button type="submit" basic color='teal'><Icon name='check' />
                   {edit ? "Update" : "Add"} a Blog Post

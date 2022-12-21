@@ -2,11 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 
-import { Link } from 'react-router-dom';
-
 import BlogForm from '../../components/BlogForm';
 
-import { QUERY_USER, QUERY_ME, QUERY_SINGLE_BLOG } from '../../utils/queries';
+import { QUERY_SINGLE_BLOG } from '../../utils/queries';
 
 import { EDIT_BLOG } from '../../utils/mutations';
 

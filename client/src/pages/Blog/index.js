@@ -2,7 +2,6 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 
 import BlogList from '../../components/BlogList';
-// import BlogForm from '../../components/BlogForm';
 
 import { QUERY_BLOGS } from '../../utils/queries';
 
@@ -14,11 +13,6 @@ function Blog() {
 
 	return (
 		<main>
-			{/* <div
-				style={{ border: '1px dotted #1a1a1a' }}>
-				<BlogForm />
-			</div> */}
-
 			<div>
 				{loading
 					? (<div>Loading...</div>)

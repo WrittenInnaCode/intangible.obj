@@ -42,7 +42,7 @@ const CommentForm = ({ blogId }) => {
 
   return (
     <div>
-      {/* <h4>Leave a comment</h4> */}
+ 
       <Divider horizontal style={{ marginTop: '3rem', marginBottom: '2rem' }}>
         <Header as='h3'> Leave a Comment </Header>
       </Divider>

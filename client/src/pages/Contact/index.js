@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 
-import { Button, Message, Container, Segment } from 'semantic-ui-react'
+import { Button, Message, Segment } from 'semantic-ui-react'
 
 function Contact() {
 
@@ -56,7 +56,6 @@ function Contact() {
 				</div>
 
 				<div className="message-content">
-					{/* <input name="subject" value={subject} className="subject-input" id="contact-subject" placeholder='subject' onChange={handleChange}></input> */}
 					<textarea required name="message" value={message} className="message-input" id="contact-message" placeholder='Message' onChange={handleChange} rows="4"></textarea>
 				</div>
 				<br />

@@ -1,15 +1,7 @@
 import React from 'react';
 import { Container, Image, Grid } from 'semantic-ui-react'
 
-// these queries are here for example ONLY
-// import { QUERY_USERS } from '../../utils/queries';
-// import { useQuery } from '@apollo/client';
-
-
 function About() {
-	// const { loading, data } = useQuery(QUERY_USERS);
-
-	// const users = data?.users || [];
 
 	return (
 		<div>

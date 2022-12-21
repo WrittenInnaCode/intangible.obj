@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Image, Modal, Rail, Sticky, Header, Segment } from 'semantic-ui-react'
+import { Image, Modal, Segment } from 'semantic-ui-react'
 
 function Object({ object }) {
 
